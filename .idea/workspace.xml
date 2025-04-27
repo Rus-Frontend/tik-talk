@@ -4,7 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="840a39e0-4ab3-485d-94e3-658aed98f38a" name="Changes" comment="" />
+    <list default="true" id="840a39e0-4ab3-485d-94e3-658aed98f38a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/JetBrainsMono-Bold.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/JetBrainsMono-BoldItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/JetBrainsMono-ExtraBold.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/JetBrainsMono-ExtraBoldItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/JetBrainsMono-ExtraLight.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/JetBrainsMono-ExtraLightItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/JetBrainsMono-Italic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/JetBrainsMono-Light.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/JetBrainsMono-LightItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/JetBrainsMono-Medium.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/JetBrainsMono-MediumItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/JetBrainsMono-Regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/JetBrainsMono-SemiBold.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/JetBrainsMono-SemiBoldItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/JetBrainsMono-Thin.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/JetBrainsMono-ThinItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/imgs/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/data/interfaces/profile.interface.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/common-ui/profile-card/profile-card.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/common-ui/profile-card/profile-card.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/common-ui/profile-card/profile-card.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/common-ui/profile-card/profile-card.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/common-ui/profile-card/profile-card.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/common-ui/profile-card/profile-card.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.scss" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,30 +41,38 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2wGFF5Z0YR85HnN9uXCVQQB6VKy" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/ruslan/Documents/GitHub/tik-talk",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/Users/ruslan/Documents/GitHub/tik-talk/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ruslan/Documents/GitHub/tik-talk&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/ruslan/Documents/GitHub/tik-talk/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/public/assets/fonts" />
+      <recent name="$PROJECT_DIR$/public/assets/imgs" />
+      <recent name="$PROJECT_DIR$/public" />
+    </key>
+  </component>
   <component name="RunManager" selected="npm.Angular CLI Server">
     <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
       <method v="2" />
@@ -68,6 +104,7 @@
       <option name="presentableId" value="Default" />
       <updated>1745659896601</updated>
       <workItem from="1745659897854" duration="3633000" />
+      <workItem from="1745666761008" duration="13369000" />
     </task>
     <servers />
   </component>

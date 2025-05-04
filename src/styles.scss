@@ -1,9 +1,12 @@
 @import "fonts";
+@import "margins";
+
 
 :root {
   --dark-color: #000000;
   --light-color: #FFFFFF;
   --primary-color: #AE7AFF;
+  --gray-color: #5F646D;
 }
 
  *,
@@ -18,6 +21,8 @@ body {
   font-family: "JetBrains Mono", sans-serif;
   background: var(--dark-color);
   color: var(--light-color);
+  background-image: url(/assets/imgs/background.jpg);
+  background-size: cover;
 }
 
 .skill-tag {
@@ -32,6 +37,8 @@ body {
 }
 
 .btn {
+  width: 100%;
+  max-width: 440px;
   border: none;
   background: var(--primary-color);
   color: var(--dark-color);
@@ -39,6 +46,31 @@ body {
   font-weight: 700;
   font-size: 14px;
   line-height: 24px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid var(--dark-color);
+}
+
+.btn-shadow {
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    bottom: -4px;
+    right: -4px;
+    background: var(--gray-color);
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+  }
+}
+
+.h1 {
+  font-size: 48px;
+  line-height: 56px;
+  font-weight: 800;
 }
 
 .h6 {
@@ -50,4 +82,33 @@ body {
 .subtitle {
   font-size: 14px;
   line-height: 20px;
+}
+
+.tt-control-label {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  display: block;
+}
+
+.tt-input {
+  width: 100%;
+  max-width: 440px;
+  margin-top: 8px;
+  display: block;
+  border: 1px solid var(--light-color);
+  border-radius: 4px;
+  padding: 12px 20px;
+  background: var(--dark-color);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  font-family: "JetBrains Mono", sans-serif;
+  color: var(--light-color);
+}
+
+.logo-img {
+  width: 440px;
+  height: 431px;
+  justify-self: center;
 }

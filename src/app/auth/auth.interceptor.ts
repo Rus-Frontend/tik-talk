@@ -6,13 +6,13 @@ import {catchError, switchMap, throwError} from "rxjs";
 let isRefreshing = false;
 
 export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
-    const authService = inject(AuthService)
-    const token = authService.token
+    const authService = inject(AuthService);
+    const token = authService.token;
 
-    if (!token) return next(req)
+    if (!token) return next(req);
 
     if (isRefreshing) {
-        return refreshAndProceed(authService, req, next)
+        return refreshAndProceed(authService, req, next);
     }
 
     return next(addToken(req, token))

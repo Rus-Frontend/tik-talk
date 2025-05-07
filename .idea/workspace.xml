@@ -5,41 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="840a39e0-4ab3-485d-94e3-658aed98f38a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/imgs/background.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/svg/eye-icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/svg/logo-big.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/svg/telegram-logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/auth/access.guard.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/auth/auth.interceptor.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/auth/auth.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/margins.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/.tsbuildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps/@angular_common_http.js" beforeDir="false" afterPath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps/@angular_common_http.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps/@angular_core.js" beforeDir="false" afterPath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps/@angular_core.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps/@angular_platform-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps/@angular_platform-browser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps/@angular_router.js" beforeDir="false" afterPath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps/@angular_router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps/@angular_router.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps/@angular_router.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps/_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps/chunk-FWG627IE.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps/chunk-FWG627IE.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps/chunk-HMZSX6NM.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps/chunk-HMZSX6NM.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps/chunk-KYRGGYQL.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps/chunk-KYRGGYQL.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps_ssr/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/.angular/cache/19.2.9/tik-talk/vite/deps_ssr/_metadata.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/imgs/img.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/common-ui/layout/layout.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/common-ui/layout/layout.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/common-ui/layout/layout.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/common-ui/layout/layout.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/data/services/profile.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/services/profile.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/login-page/login-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/login-page/login-page.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/login-page/login-page.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/login-page/login-page.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/auth/auth.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/auth/auth.interceptor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/auth/auth.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/login-page/login-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/login-page/login-page.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

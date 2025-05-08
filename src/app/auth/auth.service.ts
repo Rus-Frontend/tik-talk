@@ -9,18 +9,18 @@ import {Router} from "@angular/router";
   providedIn: 'root'
 })
 export class AuthService {
-  http = inject(HttpClient)
-  router = inject(Router)
-  cookieService = inject(CookieService)
-  baseApiUrl = 'https://icherniakov.ru/yt-course/auth/'
+  http = inject(HttpClient);
+  router = inject(Router);
+  cookieService = inject(CookieService);
+  baseApiUrl = 'https://icherniakov.ru/yt-course/auth/';
 
-  token: string | null = null
-  refreshToken: string | null = null
+  token: string | null = null;
+  refreshToken: string | null = null;
 
   get isAuth() {
       if (!this.token) {
           this.token = this.cookieService.get('token');
-          this.refreshToken = this.cookieService.get('refreshToken');
+          this.refreshToken = this.cookieService.get('refresh_token');
       }
       return !!this.token;
   }

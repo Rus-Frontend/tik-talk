@@ -7,3 +7,37 @@
   padding-left: 100px;
   padding-right: 100px;
 }
+
+.login-form,
+.big-logo {
+  width: 440px;
+  place-self: center;
+}
+
+.password-input,
+.login-input {
+  position: relative;
+}
+
+.password-eye-btn {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #FFFFFFBF;
+  cursor: pointer;
+}
+
+.password-eye-btn.active {
+  color: var(--primary-color);
+}
+
+.login-input-logo {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  color: #FFFFFFFF;
+}

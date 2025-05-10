@@ -32,6 +32,7 @@ export {
   DOCUMENT,
   parseCookieValue,
   PLATFORM_BROWSER_ID,
+  PLATFORM_SERVER_ID,
   isPlatformBrowser,
   isPlatformServer,
   XhrFactory
@@ -52,4 +53,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-R5QPIA6M.js.map
+//# sourceMappingURL=chunk-KRABRR3C.js.map

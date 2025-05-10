@@ -15,7 +15,7 @@ class="ml16 mb20"
     </ul>
 </nav>
 
-<p class="medium-text mb20">Подписчики</p>
+<p class="medium-text mb20 mt20">Подписчики</p>
 
 @for (profile of subscribers$ | async; track profile.id) {
     <app-subscriber-card

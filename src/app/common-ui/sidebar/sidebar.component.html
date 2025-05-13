@@ -4,13 +4,13 @@ alt="small logo"
 class="ml16 mb20"
 >
 
-<nav>
+<nav class="mb20">
     <ul class="main-menu-list">
         <li *ngFor="let menuItem of menuItems">
-            <button class="menu-item">
+            <a class="menu-item" [routerLink]="[menuItem.link]">
                 <svg [icon]="menuItem.icon"></svg>
                 <span>{{ menuItem.label }}</span>
-            </button>
+            </a>
         </li>
     </ul>
 </nav>
@@ -41,8 +41,8 @@ class="ml16 mb20"
 
         <div class="medium-text username-text">{{ me.username }}</div>
 
-        <a [routerLink]="['settings']" class="settings-btn">
-            <svg icon="settings"></svg>
+        <a [routerLink]="['settings']">
+            <svg class="settings-btn" icon="settings"></svg>
         </a>
     }
 </footer>

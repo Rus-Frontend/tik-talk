@@ -1,8 +1,8 @@
 @if (profile(); as profile) {
     @if (profile.avatarUrl) {
-        <img [src]="profile.avatarUrl | imgUrl" alt="Avatar">
+        <img class="user-avatar" [src]="profile.avatarUrl | imgUrl" alt="Avatar">
     } @else {
-        <img src="/assets/imgs/avatar-placeholder.png" alt="Avatar_image">
+        <img class="user-avatar" src="/assets/imgs/avatar-placeholder.png" alt="Avatar_image">
     }
     <div class="username-and-name">
         <h1 class="h4 mb4">{{ profile.firstName }} {{ profile.lastName }}</h1>

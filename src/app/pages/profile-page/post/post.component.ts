@@ -7,6 +7,8 @@ import {CommentComponent} from "./comment/comment.component";
 import {PostService} from "../../../data/services/post.service";
 import {firstValueFrom} from "rxjs";
 import {Post, PostComment} from "../../../data/interfaces/post.interface";
+import {TimeFromPipe} from "../../../helpers/pipes/time-from.pipe";
+import {LocalTimePipe} from "../../../helpers/pipes/local-time.pipe";
 
 @Component({
   selector: 'app-post',
@@ -15,7 +17,9 @@ import {Post, PostComment} from "../../../data/interfaces/post.interface";
     DatePipe,
     SvgIconComponent,
     PostInputComponent,
-    CommentComponent
+    CommentComponent,
+    TimeFromPipe,
+    LocalTimePipe
   ],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'

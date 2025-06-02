@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {SvgIconComponent} from "../svg-icon/svg-icon.component";
-import {AsyncPipe, JsonPipe, NgForOf} from "@angular/common";
+import {AsyncPipe, NgForOf} from "@angular/common";
 import {SubscriberCardComponent} from "./subscriber-card/subscriber-card.component";
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {ProfileService} from "../../data/services/profile.service";

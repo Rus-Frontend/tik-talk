@@ -4,9 +4,8 @@ import {ActivatedRoute, RouterLink} from "@angular/router";
 import {switchMap} from "rxjs";
 import {toObservable} from "@angular/core/rxjs-interop";
 import {ProfileHeaderComponent} from "../../common-ui/profile-header/profile-header.component";
-import {AsyncPipe, NgForOf} from "@angular/common";
+import {AsyncPipe} from "@angular/common";
 import {SvgIconComponent} from "../../common-ui/svg-icon/svg-icon.component";
-import {SubscriberCardComponent} from "../../common-ui/sidebar/subscriber-card/subscriber-card.component";
 import {ImgUrlPipe} from "../../helpers/pipes/img-url.pipe";
 import {PostFeedComponent} from "./post-feed/post-feed.component";
 
@@ -17,8 +16,6 @@ import {PostFeedComponent} from "./post-feed/post-feed.component";
         AsyncPipe,
         SvgIconComponent,
         RouterLink,
-        NgForOf,
-        SubscriberCardComponent,
         ImgUrlPipe,
         PostFeedComponent
     ],

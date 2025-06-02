@@ -7,7 +7,7 @@
 <div class="comment-body">
     <header class="comment-header">
         <span class="medium-text">{{ comment.author.username }}</span>
-        <span class="medium-text">{{ comment.createdAt | date: 'HH.mm dd.MM.YYYY' }}</span>
+        <span class="medium-text">{{ comment.createdAt | localTime }}</span>
     </header>
 
     <div class="comment-text">

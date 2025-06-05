@@ -1,6 +1,5 @@
-import {Component, inject, input, OnInit, signal} from '@angular/core';
+import {Component, EventEmitter, inject, Input, input, OnInit, Output, signal} from '@angular/core';
 import {AvatarCircleComponent} from "../../../common-ui/avatar-circle/avatar-circle.component";
-import {DatePipe} from "@angular/common";
 import {SvgIconComponent} from "../../../common-ui/svg-icon/svg-icon.component";
 import {PostInputComponent} from "../post-input/post-input.component";
 import {CommentComponent} from "./comment/comment.component";
@@ -14,7 +13,6 @@ import {LocalTimePipe} from "../../../helpers/pipes/local-time.pipe";
   selector: 'app-post',
   imports: [
     AvatarCircleComponent,
-    DatePipe,
     SvgIconComponent,
     PostInputComponent,
     CommentComponent,
@@ -24,6 +22,7 @@ import {LocalTimePipe} from "../../../helpers/pipes/local-time.pipe";
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'
 })
+
 export class PostComponent implements OnInit {
   post = input<Post>()
 
@@ -31,13 +30,23 @@ export class PostComponent implements OnInit {
 
   postService = inject(PostService)
 
+  @Output() eventOnCreateComment = new EventEmitter<any[]>();
+
+  postText = ''
+  postId: number = 0
+
+  onCreateComment(val: string) {
+    this.postText = val;
+    this.postId = this.post()!.id
+    this.eventOnCreateComment.emit([this.postId, this.postText]);
+  }
+
   async ngOnInit(): Promise<void> {
     this.comments.set(this.post()!.comments)
   }
 
-  async onCreated() {
-    const comments = await firstValueFrom(this.postService.getCommentsByPostId(this.post()!.id))
-
+  async onCreated(postId: number) {
+    const comments = await firstValueFrom(this.postService.getCommentsByPostId(postId))
     this.comments.set(comments)
   }
 }

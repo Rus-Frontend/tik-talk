@@ -8,7 +8,6 @@ import {LocalTimePipe} from "../../../../helpers/pipes/local-time.pipe";
   selector: 'app-comment',
     imports: [
         AvatarCircleComponent,
-        DatePipe,
         LocalTimePipe
     ],
   templateUrl: './comment.component.html',

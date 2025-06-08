@@ -20,6 +20,7 @@ import {FormsModule} from "@angular/forms";
 export class PostInputComponent {
   r2 = inject(Renderer2);
   isCommentInput = input(false);
+
   profile = inject(ProfileService).me;
 
   @Output() eventOnCreatePost = new EventEmitter();

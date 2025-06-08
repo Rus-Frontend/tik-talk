@@ -3,7 +3,6 @@
 ></app-post-input>
 @for (post of feed() ; track post.id ) {
     <app-post
-            (eventOnCreateComment)="onCreateComment($event)"
             [post]="post"
     ></app-post>
 }

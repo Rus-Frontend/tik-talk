@@ -1,4 +1,5 @@
 import {Profile} from './profile.interface';
+import {InputSignal} from "@angular/core";
 
 export interface PostCreateDto {
     title: string;

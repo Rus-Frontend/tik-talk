@@ -21,49 +21,23 @@ export class PostFeedComponent {
   r2 = inject(Renderer2);
 
   feed = this.postService.posts;
+
   profile = inject(ProfileService).me;
 
-  @ViewChild(PostComponent) postComponent!: PostComponent;
-
-  postText = '';
-  postId:number = 0;
   resizing!: Subscription;
 
   constructor() {
     firstValueFrom(this.postService.fetchPosts())
   }
 
-  onCreatePost(val: string): void {
-    this.postText = val;
-
-    if (!this.postText) return console.log("No post text found.");
+  onCreatePost(postText: string): void {
+    if (!postText) return console.log("No post text found.");
 
     firstValueFrom(this.postService.createPost({
       title: 'Клёвый пост',
-      content: this.postText,
+      content: postText,
       authorId: this.profile()!.id
-    })).then(() => {
-      this.postText = ''
-    })
-  }
-
-  onCreateComment(data: any[]): void {
-    this.postId = data[0];
-    this.postText = data[1];
-
-    if (!this.postText || !this.postId) return console.log("No comment text found.");
-
-    firstValueFrom(this.postService.createComment({
-      text: this.postText,
-      authorId: this.profile()!.id,
-      postId: this.postId,
-    })).then(() => {
-      this.postComponent.onCreated(this.postId).then()
-      {
-        this.postText = ''
-        this.postId = 0
-      }
-    })
+    }))
   }
 
   ngAfterViewInit() {

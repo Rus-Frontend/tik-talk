@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, Input, input, OnInit, Output, signal} from '@angular/core';
+import {Component, inject, Input, input, OnInit, signal} from '@angular/core';
 import {AvatarCircleComponent} from "../../../common-ui/avatar-circle/avatar-circle.component";
 import {SvgIconComponent} from "../../../common-ui/svg-icon/svg-icon.component";
 import {PostInputComponent} from "../post-input/post-input.component";
@@ -8,6 +8,7 @@ import {firstValueFrom} from "rxjs";
 import {Post, PostComment} from "../../../data/interfaces/post.interface";
 import {TimeFromPipe} from "../../../helpers/pipes/time-from.pipe";
 import {LocalTimePipe} from "../../../helpers/pipes/local-time.pipe";
+import {ProfileService} from "../../../data/services/profile.service";
 
 @Component({
   selector: 'app-post',
@@ -28,25 +29,22 @@ export class PostComponent implements OnInit {
 
   comments = signal<PostComment[]>([])
 
+  profile = inject(ProfileService).me;
+
   postService = inject(PostService)
 
-  @Output() eventOnCreateComment = new EventEmitter<any[]>();
-
-  postText = ''
-  postId: number = 0
-
-  onCreateComment(val: string) {
-    this.postText = val;
-    this.postId = this.post()!.id
-    this.eventOnCreateComment.emit([this.postId, this.postText]);
+  onCreateComment(commentText: string) {
+    firstValueFrom(this.postService.createComment({
+      text: commentText,
+      authorId: this.profile()!.id,
+      postId: this.post()!.id,
+    })).then(async () => {
+      const comments = await firstValueFrom(this.postService.getCommentsByPostId(this.post()!.id))
+      this.comments.set(comments)
+    })
   }
 
   async ngOnInit(): Promise<void> {
     this.comments.set(this.post()!.comments)
-  }
-
-  async onCreated(postId: number) {
-    const comments = await firstValueFrom(this.postService.getCommentsByPostId(postId))
-    this.comments.set(comments)
   }
 }

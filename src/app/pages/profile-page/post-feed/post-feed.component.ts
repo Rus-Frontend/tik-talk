@@ -1,4 +1,4 @@
-import {Component, ElementRef, inject, input, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, inject, Renderer2} from '@angular/core';
 import {PostInputComponent} from "../post-input/post-input.component";
 import {PostComponent} from "../post/post.component";
 import {PostService} from "../../../data/services/post.service";

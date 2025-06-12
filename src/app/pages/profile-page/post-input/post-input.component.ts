@@ -1,4 +1,4 @@
-import {Component, EventEmitter, HostBinding, inject, Input, input, Output, Renderer2} from '@angular/core';
+import {Component, EventEmitter, HostBinding, inject, input, Output, Renderer2} from '@angular/core';
 import {AvatarCircleComponent} from "../../../common-ui/avatar-circle/avatar-circle.component";
 import {ProfileService} from "../../../data/services/profile.service";
 import {NgIf} from "@angular/common";

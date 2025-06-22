@@ -39,3 +39,13 @@
 .avatar-input {
   display: none;
 }
+
+.user-avatar {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  background-position: center center;
+  background-size: contain;
+  vertical-align: middle;
+  justify-self: center;
+}

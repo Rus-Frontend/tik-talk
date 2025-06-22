@@ -6,11 +6,20 @@ import {DateTime} from "luxon";
 })
 export class LocalTimePipe implements PipeTransform {
 
-  transform(value: string | null): string | null {
+  transform(value: string | null, format?: string | null): string | null {
     if (!value) return null
 
     const now = DateTime.now()
     const offset = now.offset
-    return DateTime.fromISO(value!).plus({minutes: offset}).toFormat('HH:mm dd.MM.yyyy').toString()
+
+    let exitFormat: string | null = ''
+
+    if (!format) {
+      exitFormat = 'HH:mm dd.MM.yyyy'
+    } else {
+      exitFormat = format
+    }
+
+    return DateTime.fromISO(value!).plus({minutes: offset}).toFormat(exitFormat).toString()
   }
 }

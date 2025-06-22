@@ -7,11 +7,9 @@
 <div class="comment-body">
     <header class="comment-header">
         <span class="medium-text">{{ comment.author.username }}</span>
-        <span class="medium-text">{{ comment.createdAt | localTime }}</span>
+        <span class="medium-text">{{ comment.createdAt | localTime: 'dd.MM.yyyy' }}</span>
     </header>
 
-    <div class="comment-text">
-        {{ comment.text }}
-    </div>
+    <div class="comment-text">{{ comment.text }}</div>
 </div>
 }

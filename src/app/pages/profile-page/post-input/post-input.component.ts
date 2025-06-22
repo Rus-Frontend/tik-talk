@@ -20,7 +20,6 @@ import {FormsModule} from "@angular/forms";
 export class PostInputComponent {
   r2 = inject(Renderer2);
   isCommentInput = input(false);
-
   profile = inject(ProfileService).me;
 
   @Output() eventOnCreatePost = new EventEmitter();
@@ -32,12 +31,13 @@ export class PostInputComponent {
   }
 
   postText: string = '';
+  textAreaHeight = ''
 
   onTextAreaInput(event: Event) {
     const textarea = event.target as HTMLTextAreaElement;
     this.r2.setStyle(textarea, 'height', 'auto');
     this.r2.setStyle(textarea, 'height', textarea.scrollHeight + 'px');
-    this.postText = textarea.value;
+    this.postText = textarea.value.trim();
   }
 
   activeBtnCreatePost(): void {
@@ -50,5 +50,6 @@ export class PostInputComponent {
     }
 
     this.postText = '';
+    this.textAreaHeight = 'height: auto'
   }
 }

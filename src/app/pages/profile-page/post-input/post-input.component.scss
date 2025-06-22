@@ -6,6 +6,14 @@
   grid-template-columns: 32px 1fr 44px;
   grid-gap: 12px;
   align-items: center;
+  max-height: fit-content;
+
+  ::placeholder {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--light-transparent-color);
+    transform: translateY(50%);
+  }
 }
 
 .hidden-textarea {

@@ -5,9 +5,12 @@
     ></app-avatar-circle>
 
     <div class="message-container">
-        <strong class="medium-text mb8">{{ message.user?.firstName }} {{ message.user?.lastName }} {{ message.createdAt | date: 'HH:mm'}}</strong>
-        <div class="message-text medium-text">
-            {{ message.text }}
+        <div class="message-name-box">
+            <strong class="message-name medium-text mb8">{{ message.user?.firstName }} {{ message.user?.lastName }}</strong>&nbsp;
+            <strong class="medium-text mb8">{{ message.createdAt | localTime: 'HH:mm'}}</strong>&nbsp;
+        </div>
+        <div class="message-text-box">
+            <p class="message-text medium-text">{{ message.text }}</p>
         </div>
     </div>
 }

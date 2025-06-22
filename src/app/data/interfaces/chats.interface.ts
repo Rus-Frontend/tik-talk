@@ -20,8 +20,15 @@ export interface Message {
     isMine?: boolean
 }
 
+export interface groupedMessages {
+    date: string
+    messages: Message[]
+}
+
 export interface LastMessageRes {
     id: number
     userFrom: Profile
     message: string | null
+    createdAt: string
+    unreadMessages: number
 }

@@ -37,7 +37,7 @@ export class ProfilePageComponent {
   profile$ = this.route.params
       .pipe(
           switchMap(({id}) => {
-              this.isMyPage.set(id === 'me' || id === this.profileService.me()!.id)
+              this.isMyPage.set(id === 'me' || id === this.profileService.me()?.id)
             if (id === 'me') return this.me$
 
             return this.profileService.getAccount(id)

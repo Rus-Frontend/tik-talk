@@ -1,8 +1,9 @@
 import {inject, Injectable, signal} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Chat, LastMessageRes, Message} from "../interfaces/chats.interface";
+import {Chat, groupedMessages, LastMessageRes, Message} from "../interfaces/chats.interface";
 import {ProfileService} from "./profile.service";
 import {map} from "rxjs";
+import { DateTime } from "luxon";
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +13,7 @@ export class ChatsService {
     http = inject(HttpClient)
     me = inject(ProfileService).me
 
-    activeChatMessages = signal<Message[]>([])
+    activeChatMessages = signal<groupedMessages[]>([])
 
     baseApiUrl = 'https://icherniakov.ru/yt-course/'
     chatsUrl = `${this.baseApiUrl}chat/`
@@ -37,7 +38,30 @@ export class ChatsService {
                             isMine: message.userFromId === this.me()!.id
                         }
                     })
-                    this.activeChatMessages.set(patchedMessages)
+
+                    const groupedPatchedMessages: groupedMessages[] = []
+                    let messages: Message[] = []
+
+                    for (let i = 0, n = 0, l = patchedMessages.length; i < l; i++) {
+
+                        if (i === 0) {
+                            messages.push(patchedMessages[i])
+                            groupedPatchedMessages[n] = {date: patchedMessages[i].createdAt, messages: messages}
+                        } else {
+                            if (DateTime.fromISO(patchedMessages[i].createdAt).toFormat('dd.MM.yyyy').toString() === DateTime.fromISO(patchedMessages[i-1].createdAt).toFormat('dd.MM.yyyy').toString()) {
+                                messages.push(patchedMessages[i])
+                                groupedPatchedMessages[n] = {date: patchedMessages[i].createdAt, messages: messages}
+                            } else {
+                                n++
+                                messages = []
+                                messages.push(patchedMessages[i])
+                                groupedPatchedMessages[n] = {date: patchedMessages[i].createdAt, messages: messages}
+                            }
+                        }
+                    }
+
+                    this.activeChatMessages.set(groupedPatchedMessages)
+
                     return {
                         ...chat,
                         companion: chat.userFirst.id === this.me()!.id ? chat.userSecond : chat.userFirst,

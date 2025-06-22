@@ -5,21 +5,58 @@
 }
 
 :host.is-mine {
-  grid-template-columns: min-content 32px;
-  justify-self: end;
+  grid-template-columns: 1fr 32px;
 
   .message-container {
     order: -1;
+    text-align: right;
+  }
+
+  .message-name-box {
+    display: flex;
+    justify-content: end;
+  }
+
+  .message-name {
+    order: 1;
+  }
+
+  .message-text-box {
+    padding: 8px 16px;
+    background: var(--primary-color);
+    max-width: 85%;
+    justify-self: end;
+    clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
+    transform: scaleX(-1);
+  }
+
+  .message-text {
+    font-weight: 500;
+    color: var(--dark-color);
+    transform: scaleX(-1);
+    text-align: justify;
+    word-break: break-all;
+    white-space: pre-wrap;
   }
 }
 
-.message-text {
+.message-name-box {
+  display: flex;
+  justify-content: start;
+}
+
+.message-text-box {
   padding: 8px 16px;
   background: var(--message-color);
+  max-width: 85%;
+  width: fit-content;
+  clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
+}
+
+.message-text {
   font-weight: 500;
   color: var(--light-color);
-  width: min-content;
-  mask: linear-gradient(#000 0 0), linear-gradient(-135deg, #000 50%, #0000 0) border-box 100% 100% / 200% 200% no-repeat;
-  mask-composite: exclude;
-  mask-position: 10% 94%;
+  text-align: justify;
+  word-break: break-all;
+  white-space: pre-wrap;
 }

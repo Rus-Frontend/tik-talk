@@ -1,5 +1,8 @@
-<app-profile-header
-></app-profile-header>
+<div class="profile-header">
+    <app-profile-header
+            [profile]="profile()"
+    ></app-profile-header>
+</div>
 
 
 <form class="profile-form__wrapper" [formGroup]="form">
@@ -7,28 +10,29 @@
         <div class="two-columns">
             <label class="tt-form-label">
                 <span class="tt-form-label__text">Имя</span>
-                <input type="text" class="tt-form-input" formControlName="firstName">
+                <input placeholder="Введите данные" type="text" class="tt-form-input" formControlName="firstName">
             </label>
 
             <label class="tt-form-label">
                 <span class="tt-form-label__text">Фамилия</span>
-                <input type="text" class="tt-form-input" formControlName="lastName">
+                <input placeholder="Введите данные" type="text" class="tt-form-input" formControlName="lastName">
             </label>
         </div>
 
         <label class="tt-form-label">
             <span class="tt-form-label__text">Telegram username</span>
-            <input type="text" class="tt-form-input" formControlName="username">
+            <input placeholder="Введите данные" type="text" class="tt-form-input" formControlName="username">
         </label>
 
         <label class="tt-form-label">
             <span class="tt-form-label__text">О себе</span>
             <textarea
+                    placeholder="Введите данные"
                     formControlName="description"
                     class="tt-form-input tt-textarea"
                     rows="4"
             ></textarea>
-            <input type="text" class="tt-form-input" formControlName="username">
+            <input placeholder="Введите данные" type="text" class="tt-form-input" formControlName="username">
         </label>
 
         <label class="tt-form-label">
@@ -38,12 +42,12 @@
 
         <label class="tt-form-label">
             <span class="tt-form-label__text">Навыки (стэк)</span>
-            <input type="text" class="tt-form-input" formControlName="stack">
+            <input placeholder="Введите данные" type="text" class="tt-form-input" formControlName="stack">
         </label>
     </div>
 
     <div>
-        <div>
+        <div class="btn-box">
             <button class="btn" (click)="onSave()">Сохранить</button>
         </div>
 

@@ -3,13 +3,15 @@ import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ProfileService} from "../../../data/services/profile.service";
 import {debounceTime, startWith, Subscription, switchMap} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {SvgIconComponent} from "../../../common-ui/svg-icon/svg-icon.component";
 
 @Component({
   selector: 'app-profile-filters',
-  imports: [
-    FormsModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        SvgIconComponent
+    ],
   templateUrl: './profile-filters.component.html',
   styleUrl: './profile-filters.component.scss'
 })

@@ -10,7 +10,7 @@ import {AvatarUploadComponent} from "./avatar-upload/avatar-upload.component";
   imports: [
     ProfileHeaderComponent,
     ReactiveFormsModule,
-    AvatarUploadComponent
+    AvatarUploadComponent,
   ],
   templateUrl: './settings-page.component.html',
   styleUrl: './settings-page.component.scss'
@@ -18,6 +18,8 @@ import {AvatarUploadComponent} from "./avatar-upload/avatar-upload.component";
 export class SettingsPageComponent {
   fb = inject(FormBuilder)
   profileService = inject(ProfileService)
+
+  profile = this.profileService.me
 
   @ViewChild(AvatarUploadComponent) avatarUploader!: AvatarUploadComponent
 

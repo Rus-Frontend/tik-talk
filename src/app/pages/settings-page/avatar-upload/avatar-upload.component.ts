@@ -1,20 +1,27 @@
-import {Component, signal} from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import {SvgIconComponent} from "../../../common-ui/svg-icon/svg-icon.component";
 import {DndDirective} from "../../../common-ui/directives/dnd.directive";
 import {FormsModule} from "@angular/forms";
+import {ProfileService} from "../../../data/services/profile.service";
+import {ImgUrlPipe} from "../../../helpers/pipes/img-url.pipe";
 
 @Component({
   selector: 'app-avatar-upload',
   imports: [
     SvgIconComponent,
     DndDirective,
-    FormsModule
+    FormsModule,
+    ImgUrlPipe
   ],
   templateUrl: './avatar-upload.component.html',
   styleUrl: './avatar-upload.component.scss'
 })
 export class AvatarUploadComponent {
   preview = signal<string>('/assets/imgs/avatar-placeholder.png')
+
+  profileService = inject(ProfileService)
+
+  profile = this.profileService.me
 
   avatar: File | null = null;
 

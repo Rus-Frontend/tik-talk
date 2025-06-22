@@ -27,7 +27,6 @@ export class LoginPageComponent {
       this.authService.login(this.form.value)
           .subscribe((res) => {
             this.router.navigate([''])
-            console.log(res)
           })
     }
   }

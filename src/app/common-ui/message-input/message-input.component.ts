@@ -24,12 +24,13 @@ export class MessageInputComponent {
   @Output() created = new EventEmitter<string>()
 
   postText = ''
+  textAreaHeight = ''
 
   onTextAreaInput(event: Event) {
     const textarea = event.target as HTMLTextAreaElement;
     this.r2.setStyle(textarea, 'height', 'auto');
     this.r2.setStyle(textarea, 'height', textarea.scrollHeight + 'px');
-    this.postText = textarea.value;
+    this.postText = textarea.value.trim();
   }
 
   onCreatePost(): void {
@@ -37,5 +38,6 @@ export class MessageInputComponent {
 
     this.created.emit(this.postText)
     this.postText = ''
+    this.textAreaHeight = 'height: auto'
   }
 }

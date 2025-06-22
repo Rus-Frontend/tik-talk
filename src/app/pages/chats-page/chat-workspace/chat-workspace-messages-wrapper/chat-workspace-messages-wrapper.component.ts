@@ -1,48 +1,62 @@
-import {Component, ElementRef, inject, input, Renderer2, signal} from '@angular/core';
+import {Component, ElementRef, inject, input, Renderer2, ViewChild} from '@angular/core';
 import {ChatWorkspaceMessageComponent} from "./chat-workspace-message/chat-workspace-message.component";
 import {MessageInputComponent} from "../../../../common-ui/message-input/message-input.component";
 import {ChatsService} from "../../../../data/services/chats.service";
-import {Chat, Message} from "../../../../data/interfaces/chats.interface";
-import {debounceTime, firstValueFrom, fromEvent, Subscription} from "rxjs";
-import {PostService} from "../../../../data/services/post.service";
-import {ProfileService} from "../../../../data/services/profile.service";
+import {Chat} from "../../../../data/interfaces/chats.interface";
+import {debounceTime, firstValueFrom, fromEvent, Subscription, timer} from "rxjs";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {TimeFromPipe} from "../../../../helpers/pipes/time-from.pipe";
 
 @Component({
   selector: 'app-chat-workspace-messages-wrapper',
   imports: [
     ChatWorkspaceMessageComponent,
-    MessageInputComponent
+    MessageInputComponent,
+    TimeFromPipe
   ],
   templateUrl: './chat-workspace-messages-wrapper.component.html',
   styleUrl: './chat-workspace-messages-wrapper.component.scss'
 })
 export class ChatWorkspaceMessagesWrapperComponent {
   chatService = inject(ChatsService)
-
-  chat = input.required<Chat>()
-
-  messages = this.chatService.activeChatMessages
-
-  async onSendMessage(messageText:string) {
-    await firstValueFrom(this.chatService.sendMessage(this.chat().id, messageText))
-
-    await firstValueFrom(this.chatService.getChatById(this.chat().id))
-  }
-
-
-
-
-
   hostElement = inject(ElementRef);
   r2 = inject(Renderer2);
 
   resizing!: Subscription;
 
+  @ViewChild('messagesWrapper') messageWrapper!: ElementRef;
+
+  chat = input.required<Chat>()
+
+  messages = this.chatService.activeChatMessages
+
+  constructor() {
+    this.updateChat()
+  }
+
+  updateChat() {
+    timer(50000, 50000)
+        .pipe(takeUntilDestroyed())
+        .subscribe(async () => {
+          await firstValueFrom(this.chatService.getChatById(this.chat().id))
+        })
+  }
+
+  async onSendMessage(messageText:string) {
+    await firstValueFrom(this.chatService.sendMessage(this.chat().id, messageText))
+    await firstValueFrom(this.chatService.getChatById(this.chat().id))
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom()
+  }
+
+
   ngAfterViewInit() {
     this.resizeFeed()
 
     this.resizing = fromEvent(window, 'resize')
-        .pipe(debounceTime(50))
+        .pipe(debounceTime(30))
         .subscribe(() => {
           this.resizeFeed()
         })
@@ -54,9 +68,11 @@ export class ChatWorkspaceMessagesWrapperComponent {
 
   resizeFeed() {
     const {top} = this.hostElement.nativeElement.getBoundingClientRect();
-    const height = window.innerHeight - top - 24;
+    const height = window.innerHeight - top - 130;
     this.r2.setStyle(this.hostElement.nativeElement, 'height', `${height}px`);
   }
 
-
+  scrollToBottom() {
+    this.messageWrapper.nativeElement.scrollTop = this.messageWrapper.nativeElement.scrollHeight;
+  }
 }

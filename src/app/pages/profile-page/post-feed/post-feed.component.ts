@@ -1,4 +1,4 @@
-import {Component, ElementRef, inject, Renderer2} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, inject, OnDestroy, Renderer2} from '@angular/core';
 import {PostInputComponent} from "../post-input/post-input.component";
 import {PostComponent} from "../post/post.component";
 import {PostService} from "../../../data/services/post.service";
@@ -15,7 +15,7 @@ import {ProfileService} from "../../../data/services/profile.service";
   styleUrl: './post-feed.component.scss'
 })
 
-export class PostFeedComponent {
+export class PostFeedComponent implements OnDestroy, AfterViewInit{
   postService = inject(PostService);
   hostElement = inject(ElementRef);
   r2 = inject(Renderer2);

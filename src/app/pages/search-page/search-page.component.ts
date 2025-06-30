@@ -1,4 +1,4 @@
-import {Component, ElementRef, inject, Renderer2} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, inject, OnDestroy, Renderer2} from '@angular/core';
 import {ProfileCardComponent} from "../../common-ui/profile-card/profile-card.component";
 import {ProfileService} from "../../data/services/profile.service";
 import {Profile} from "../../data/interfaces/profile.interface";
@@ -14,7 +14,7 @@ import {debounceTime, fromEvent, Subscription} from "rxjs";
   templateUrl: './search-page.component.html',
   styleUrl: './search-page.component.scss'
 })
-export class SearchPageComponent {
+export class SearchPageComponent implements AfterViewInit, OnDestroy {
   profileService = inject(ProfileService)
 
   hostElement = inject(ElementRef);

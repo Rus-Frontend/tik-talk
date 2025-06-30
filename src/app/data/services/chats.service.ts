@@ -42,7 +42,7 @@ export class ChatsService {
                     const groupedPatchedMessages: groupedMessages[] = []
                     let messages: Message[] = []
 
-                    for (let i = 0, n = 0, l = patchedMessages.length; i < l; i++) {
+                    for (let i = 0, n = 0; i < patchedMessages.length; i++) {
 
                         if (i === 0) {
                             messages.push(patchedMessages[i])

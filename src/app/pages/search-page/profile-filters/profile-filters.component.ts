@@ -10,7 +10,6 @@ import {SvgIconComponent} from "../../../common-ui/svg-icon/svg-icon.component";
     imports: [
         FormsModule,
         ReactiveFormsModule,
-        SvgIconComponent
     ],
   templateUrl: './profile-filters.component.html',
   styleUrl: './profile-filters.component.scss'

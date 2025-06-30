@@ -1,4 +1,14 @@
-import {Component, ElementRef, inject, input, Renderer2, ViewChild} from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  ElementRef,
+  inject,
+  input,
+  OnDestroy,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 import {ChatWorkspaceMessageComponent} from "./chat-workspace-message/chat-workspace-message.component";
 import {MessageInputComponent} from "../../../../common-ui/message-input/message-input.component";
 import {ChatsService} from "../../../../data/services/chats.service";
@@ -17,12 +27,12 @@ import {TimeFromPipe} from "../../../../helpers/pipes/time-from.pipe";
   templateUrl: './chat-workspace-messages-wrapper.component.html',
   styleUrl: './chat-workspace-messages-wrapper.component.scss'
 })
-export class ChatWorkspaceMessagesWrapperComponent {
+export class ChatWorkspaceMessagesWrapperComponent implements OnDestroy, AfterViewInit, AfterViewChecked{
   chatService = inject(ChatsService)
   hostElement = inject(ElementRef);
   r2 = inject(Renderer2);
 
-  resizing!: Subscription;
+  resizing!: Subscription
 
   @ViewChild('messagesWrapper') messageWrapper!: ElementRef;
 
@@ -34,14 +44,6 @@ export class ChatWorkspaceMessagesWrapperComponent {
     this.updateChat()
   }
 
-  updateChat() {
-    timer(50000, 50000)
-        .pipe(takeUntilDestroyed())
-        .subscribe(async () => {
-          await firstValueFrom(this.chatService.getChatById(this.chat().id))
-        })
-  }
-
   async onSendMessage(messageText:string) {
     await firstValueFrom(this.chatService.sendMessage(this.chat().id, messageText))
     await firstValueFrom(this.chatService.getChatById(this.chat().id))
@@ -50,7 +52,6 @@ export class ChatWorkspaceMessagesWrapperComponent {
   ngAfterViewChecked() {
     this.scrollToBottom()
   }
-
 
   ngAfterViewInit() {
     this.resizeFeed()
@@ -75,4 +76,14 @@ export class ChatWorkspaceMessagesWrapperComponent {
   scrollToBottom() {
     this.messageWrapper.nativeElement.scrollTop = this.messageWrapper.nativeElement.scrollHeight;
   }
+
+  updateChat() {
+    timer(50000, 50000)
+        .pipe(takeUntilDestroyed())
+        .subscribe(async () => {
+          await firstValueFrom(this.chatService.getChatById(this.chat().id))
+        })
+  }
 }
+
+

@@ -1,0 +1,76 @@
+<div class="profile-header">
+  <app-profile-header [profile]="profile()"></app-profile-header>
+</div>
+
+<form class="profile-form__wrapper" [formGroup]="form">
+  <div class="profile-form">
+    <div class="two-columns">
+      <label class="tt-form-label">
+        <span class="tt-form-label__text">Имя</span>
+        <input
+          placeholder="Введите данные"
+          type="text"
+          class="tt-form-input"
+          formControlName="firstName"
+        />
+      </label>
+
+      <label class="tt-form-label">
+        <span class="tt-form-label__text">Фамилия</span>
+        <input
+          placeholder="Введите данные"
+          type="text"
+          class="tt-form-input"
+          formControlName="lastName"
+        />
+      </label>
+    </div>
+
+    <label class="tt-form-label">
+      <span class="tt-form-label__text">Telegram username</span>
+      <input
+        placeholder="Введите данные"
+        type="text"
+        class="tt-form-input"
+        formControlName="username"
+      />
+    </label>
+
+    <label class="tt-form-label">
+      <span class="tt-form-label__text">О себе</span>
+      <textarea
+        placeholder="Введите данные"
+        formControlName="description"
+        class="tt-form-input tt-textarea"
+        rows="4"
+      ></textarea>
+      <input
+        placeholder="Введите данные"
+        type="text"
+        class="tt-form-input"
+        formControlName="username"
+      />
+    </label>
+
+    <label class="tt-form-label">
+      <span class="tt-form-label__text">Аватарка</span>
+      <app-avatar-upload></app-avatar-upload>
+    </label>
+
+    <label class="tt-form-label">
+      <span class="tt-form-label__text">Навыки (стэк)</span>
+      <input
+        placeholder="Введите данные"
+        type="text"
+        class="tt-form-input"
+        formControlName="stack"
+      />
+    </label>
+  </div>
+
+  <div>
+    <div class="btn-box">
+      <button class="btn" (click)="onSave()">Сохранить</button>
+    </div>
+  </div>
+</form>

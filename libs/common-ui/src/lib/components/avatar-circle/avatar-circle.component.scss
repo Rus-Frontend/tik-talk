@@ -1,0 +1,13 @@
+.user-avatar {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  background-position: center center;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+:host.size32 .user-avatar {
+  width: 32px;
+  height: 32px;
+}

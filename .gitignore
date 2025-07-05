@@ -7,3 +7,8 @@ build/
 .cache/
 *.tmp
 *.DS_Store
+
+
+.nx/cache
+.nx/workspace-data
+.angular

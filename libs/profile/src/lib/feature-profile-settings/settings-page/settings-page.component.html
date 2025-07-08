@@ -2,7 +2,10 @@
   <app-profile-header [profile]="profile()"></app-profile-header>
 </div>
 
-<form class="profile-form__wrapper" [formGroup]="form">
+<form
+  class="profile-form__wrapper"
+  [formGroup]="form"
+>
   <div class="profile-form">
     <div class="two-columns">
       <label class="tt-form-label">
@@ -70,7 +73,11 @@
 
   <div>
     <div class="btn-box">
-      <button class="btn" (click)="onSave()">Сохранить</button>
+      <button
+        class="btn"
+        (click)="onSave()"
+      >Сохранить
+      </button>
     </div>
   </div>
 </form>

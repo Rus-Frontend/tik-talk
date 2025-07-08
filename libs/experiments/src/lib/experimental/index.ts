@@ -9,10 +9,7 @@ export {
   NameValidator,
   MockService,
   FormsExperimentComponent,
-  MyFormsExperimentComponent
-}
+  MyFormsExperimentComponent,
+};
 
-export type {
-  Receiver,
-  Feature,
-}
+export type { Receiver, Feature };

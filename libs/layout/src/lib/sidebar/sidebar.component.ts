@@ -3,7 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { AsyncPipe, NgForOf } from '@angular/common';
 import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { firstValueFrom} from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { ImgUrlPipe, SvgIconComponent } from '@tt/common-ui';
 import { ProfileService } from '@tt/data-access';
 
@@ -46,6 +46,6 @@ export class SidebarComponent implements OnInit {
   ];
 
   ngOnInit() {
-    firstValueFrom(this.profileService.getMe())
+    firstValueFrom(this.profileService.getMe());
   }
 }

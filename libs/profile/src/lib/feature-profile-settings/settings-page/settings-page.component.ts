@@ -49,7 +49,7 @@ export class SettingsPageComponent {
       );
     }
 
-//@ts-ignore
+    //@ts-ignore
     firstValueFrom(
       //@ts-ignore
       this.profileService.patchProfile({

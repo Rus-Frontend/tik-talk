@@ -9,43 +9,45 @@ import {
 import { debounceTime, fromEvent, Subscription } from 'rxjs';
 import { ProfileCardComponent } from '../../ui';
 import { ProfileFiltersComponent } from '../profile-filters/profile-filters.component';
-import { ProfileService } from '@tt/data-access';
+import { selectFilteredProfiles } from '@tt/data-access'
+import { Store } from '@ngrx/store';
+import { AsyncPipe } from '@angular/common'
 
 @Component({
-  selector: 'app-search-page',
-  imports: [ProfileCardComponent, ProfileFiltersComponent],
-  templateUrl: './search-page.component.html',
-  styleUrl: './search-page.component.scss',
+	selector: 'app-search-page',
+	imports: [ProfileCardComponent, ProfileFiltersComponent, AsyncPipe],
+	templateUrl: './search-page.component.html',
+	styleUrl: './search-page.component.scss'
 })
 export class SearchPageComponent implements AfterViewInit, OnDestroy {
-  profileService = inject(ProfileService);
+	store = inject(Store)
 
-  hostElement = inject(ElementRef);
-  r2 = inject(Renderer2);
+	hostElement = inject(ElementRef)
+	r2 = inject(Renderer2)
 
-  profiles = this.profileService.filteredProfiles;
+	profiles = this.store.selectSignal(selectFilteredProfiles)
 
-  resizing!: Subscription;
+	resizing!: Subscription
 
-  constructor() {}
+	constructor() {}
 
-  ngAfterViewInit() {
-    this.resizeFeed();
+	ngAfterViewInit() {
+		this.resizeFeed()
 
-    this.resizing = fromEvent(window, 'resize')
-      .pipe(debounceTime(50))
-      .subscribe(() => {
-        this.resizeFeed();
-      });
-  }
+		this.resizing = fromEvent(window, 'resize')
+			.pipe(debounceTime(50))
+			.subscribe(() => {
+				this.resizeFeed()
+			})
+	}
 
-  ngOnDestroy() {
-    this.resizing.unsubscribe();
-  }
+	ngOnDestroy() {
+		this.resizing.unsubscribe()
+	}
 
-  resizeFeed() {
-    const { top } = this.hostElement.nativeElement.getBoundingClientRect();
-    const height = window.innerHeight - top - 24 - 24;
-    this.r2.setStyle(this.hostElement.nativeElement, 'height', `${height}px`);
-  }
+	resizeFeed() {
+		const { top } = this.hostElement.nativeElement.getBoundingClientRect()
+		const height = window.innerHeight - top - 24 - 24
+		this.r2.setStyle(this.hostElement.nativeElement, 'height', `${height}px`)
+	}
 }

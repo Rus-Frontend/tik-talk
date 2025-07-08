@@ -4,8 +4,8 @@ import { ChatWorkspaceMessageComponent } from './chat-workspace-message/chat-wor
 import { ChatWorkspaceMessagesWrapperComponent } from './chat-workspace-messages-wrapper/chat-workspace-messages-wrapper.component';
 
 export {
-    ChatWorkspaceComponent,
-    ChatWorkspaceMessagesWrapperComponent,
-    ChatWorkspaceMessageComponent,
-    ChatWorkspaceHeaderComponent
-}
+  ChatWorkspaceComponent,
+  ChatWorkspaceMessagesWrapperComponent,
+  ChatWorkspaceMessageComponent,
+  ChatWorkspaceHeaderComponent,
+};

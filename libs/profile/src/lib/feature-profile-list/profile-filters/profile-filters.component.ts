@@ -1,7 +1,11 @@
 import { Component, inject, OnDestroy } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, startWith, Subscription, switchMap } from 'rxjs';
-import { ProfileService } from '@tt/data-access';
+import { debounceTime, startWith, Subscription } from 'rxjs';
+import {
+	profileActions,
+	selectProfileFilters
+} from '@tt/data-access'
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-profile-filters',
@@ -11,7 +15,10 @@ import { ProfileService } from '@tt/data-access';
 })
 export class ProfileFiltersComponent implements OnDestroy {
   fb = inject(FormBuilder);
-  profileService = inject(ProfileService);
+  store = inject(Store);
+
+	filters = this.store.selectSignal(selectProfileFilters)
+
 
   searchForm = this.fb.group({
     firstName: [''],
@@ -22,15 +29,15 @@ export class ProfileFiltersComponent implements OnDestroy {
   searchFormSub!: Subscription;
 
   constructor() {
-    this.searchFormSub = this.searchForm.valueChanges
+		this.searchForm.patchValue(this.filters())
+		this.searchFormSub = this.searchForm.valueChanges
       .pipe(
-        startWith({}),
-        debounceTime(300),
-        switchMap((formValue) => {
-          return this.profileService.filterProfiles(formValue);
-        })
+        startWith(this.filters()),
+        debounceTime(1000),
       )
-      .subscribe();
+      .subscribe(formValue => {
+				this.store.dispatch(profileActions.filterEvents({filters: formValue}))
+      });
   }
 
   ngOnDestroy() {

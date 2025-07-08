@@ -23,34 +23,50 @@
 <p class="medium-text mb20 mt20">Подписчики</p>
 
 @for (profile of subscribers$ | async; track profile.id) {
-<app-subscriber-card [profile]="profile"></app-subscriber-card>
+  <app-subscriber-card [profile]="profile"></app-subscriber-card>
 }
 
 <div class="mt20 to-subscribers">
-  <a [routerLink]="['/']" class="to-subscribers-link medium-text"
-    >Все подписчики</a
+  <a
+    [routerLink]="['/']"
+    class="to-subscribers-link medium-text"
+  >Все подписчики
+  </a
   >
-  <svg icon="arrow" class="to-subscribers-icon"></svg>
+  <svg
+    icon="arrow"
+    class="to-subscribers-icon"
+  ></svg>
 </div>
 
 <footer class="sidebar__footer">
-  @if (me(); as me) { @if (me.avatarUrl) {
-  <img [src]="me.avatarUrl | imgUrl" alt="Avatar" />
-  } @else {
-  <img src="/assets/imgs/avatar-placeholder.png" alt="Avatar_image" />
-  }
+  @if (me(); as me) {
+    @if (me.avatarUrl) {
+      <img
+        [src]="me.avatarUrl | imgUrl"
+        alt="Avatar"
+      />
+    } @else {
+      <img
+        src="/assets/imgs/avatar-placeholder.png"
+        alt="Avatar_image"
+      />
+    }
 
-  <div>
-    <a
-      [routerLink]="['/']"
-      class="medium-text username-text"
-    >
-      {{ me.username }}
+    <div>
+      <a
+        [routerLink]="['/']"
+        class="medium-text username-text"
+      >
+        {{ me.username }}
+      </a>
+    </div>
+
+    <a [routerLink]="['settings']">
+      <svg
+        class="settings-btn"
+        icon="settings"
+      ></svg>
     </a>
-  </div>
-
-  <a [routerLink]="['settings']">
-    <svg class="settings-btn" icon="settings"></svg>
-  </a>
   }
 </footer>

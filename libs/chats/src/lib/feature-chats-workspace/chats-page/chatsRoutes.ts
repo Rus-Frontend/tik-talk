@@ -5,7 +5,7 @@ import { ChatsPageComponent } from './chats.component';
 export const ChatsRoutes: Route[] = [
   {
     path: '',
-    component:  ChatsPageComponent,
+    component: ChatsPageComponent,
     children: [{ path: ':id', component: ChatWorkspaceComponent }],
   },
 ];

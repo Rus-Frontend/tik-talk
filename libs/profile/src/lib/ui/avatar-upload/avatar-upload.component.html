@@ -1,11 +1,15 @@
 @if (profile()?.avatarUrl) {
-<img
-  class="user-avatar"
-  [src]="profile()!.avatarUrl | imgUrl"
-  alt="My avatar"
-/>
+  <img
+    class="user-avatar"
+    [src]="profile()!.avatarUrl | imgUrl"
+    alt="My avatar"
+  />
 } @else {
-<img [src]="preview()" alt="Standard-avatar" class="Standard avatar" />
+  <img
+    [src]="preview()"
+    alt="Standard-avatar"
+    class="Standard avatar"
+  />
 }
 
 <div

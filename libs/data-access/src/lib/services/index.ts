@@ -9,5 +9,5 @@ export {
   ChatsService,
   PostService,
   ProfileService,
-  GlobalStoreService
-}
+  GlobalStoreService,
+};

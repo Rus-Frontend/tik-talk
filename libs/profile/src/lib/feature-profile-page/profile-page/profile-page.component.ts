@@ -21,7 +21,7 @@ import { ProfileService } from '@tt/data-access';
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss',
 })
-  export class ProfilePageComponent {
+export class ProfilePageComponent {
   profileService = inject(ProfileService);
   route = inject(ActivatedRoute);
   router = inject(Router);
@@ -41,6 +41,6 @@ import { ProfileService } from '@tt/data-access';
   );
 
   async sendMessage(userId: number) {
-    this.router.navigate(['/chats', 'new'], {queryParams: {userId}});
+    this.router.navigate(['/chats', 'new'], { queryParams: { userId } });
   }
 }

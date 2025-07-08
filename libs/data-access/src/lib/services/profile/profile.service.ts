@@ -8,24 +8,23 @@ import { GlobalStoreService } from '../profile/global-store.service';
   providedIn: 'root',
 })
 export class ProfileService {
-  http = inject(HttpClient)
-  #globalStoreService = inject(GlobalStoreService)
-  baseApiUrl = 'https://icherniakov.ru/yt-course/'
+  http = inject(HttpClient);
+  #globalStoreService = inject(GlobalStoreService);
+  baseApiUrl = 'https://icherniakov.ru/yt-course/';
 
-  me = signal<Profile | null>(null)
-  filteredProfiles = signal<Profile[]>([]);
+  me = signal<Profile | null>(null);
 
   getTestAccounts() {
-    return this.http.get<Profile[]>(`${this.baseApiUrl}account/test_accounts`)
+    return this.http.get<Profile[]>(`${this.baseApiUrl}account/test_accounts`);
   }
 
   getMe() {
-    return this.http
-      .get<Profile>(`${this.baseApiUrl}account/me`)
-      .pipe(tap((res) => {
-        this.me.set(res)
-        this.#globalStoreService.me.set(res)
-      }));
+    return this.http.get<Profile>(`${this.baseApiUrl}account/me`).pipe(
+      tap((res) => {
+        this.me.set(res);
+        this.#globalStoreService.me.set(res);
+      })
+    );
   }
 
   getAccount(id: string) {
@@ -58,6 +57,5 @@ export class ProfileService {
       .get<Pageble<Profile>>(`${this.baseApiUrl}account/accounts`, {
         params,
       })
-      .pipe(tap((res) => this.filteredProfiles.set(res.items)));
   }
 }

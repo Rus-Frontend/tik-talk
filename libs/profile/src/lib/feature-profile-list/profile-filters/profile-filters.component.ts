@@ -16,8 +16,10 @@ import { Store } from '@ngrx/store';
 export class ProfileFiltersComponent implements OnDestroy {
   fb = inject(FormBuilder);
   store = inject(Store);
+	// store = inject(profileStore) //-альтернативный вариант стора на signal ngrx
 
 	filters = this.store.selectSignal(selectProfileFilters)
+	// filters = this.store.profileFilters //-альтернативный вариант стора на signal ngrx
 
 
   searchForm = this.fb.group({
@@ -37,6 +39,8 @@ export class ProfileFiltersComponent implements OnDestroy {
       )
       .subscribe(formValue => {
 				this.store.dispatch(profileActions.filterEvents({filters: formValue}))
+				// this.store.filterProfiles(formValue) //-альтернативный вариант стора на signal ngrx
+				// this.store.dispatch(new FilterEvents(formValue)) //-альтернативный вариант стора на ngxs
       });
   }
 

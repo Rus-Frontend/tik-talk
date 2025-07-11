@@ -17,6 +17,10 @@ import {
 	ProfileEffects,
 	profileFeature,
 } from '@tt/data-access'
+import {
+	PostEffects,
+	postFeature,
+} from '../../../../libs/data-access/src/lib/store/posts'
 
 export const routes: Routes = [
   {
@@ -24,10 +28,18 @@ export const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', redirectTo: 'profile/me', pathMatch: 'full' },
-      { path: 'profile/:id', component: ProfilePageComponent },
+      { path: 'profile/:id',
+				component: ProfilePageComponent,
+				providers: [
+					provideState(postFeature),
+					provideEffects(PostEffects)
+				]
+			},
       { path: 'search',
         component: SearchPageComponent,
         providers: [
+					// profileStore,
+					// provideStates([ProfileState]) //-альтернативный вариант стора на ngxs
           provideState(profileFeature),
           provideEffects(ProfileEffects)
         ]

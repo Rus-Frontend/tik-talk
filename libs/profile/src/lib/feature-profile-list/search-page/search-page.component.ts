@@ -21,11 +21,17 @@ import { AsyncPipe } from '@angular/common'
 })
 export class SearchPageComponent implements AfterViewInit, OnDestroy {
 	store = inject(Store)
+	// store = inject(profileStore) //-альтернативный вариант стора на signal ngrx
 
 	hostElement = inject(ElementRef)
 	r2 = inject(Renderer2)
 
 	profiles = this.store.selectSignal(selectFilteredProfiles)
+
+	// profiles = this.store.profiles //-альтернативный вариант стора на signal ngrx
+	// profiles = this.store.profiles2 //-альтернативный вариант стора на signal ngrx с доп. действием - замена фамилии профайлов на BLA BLA
+
+	// profiles = this.store.selectSignal(ProfileState.getProfiles) //-альтернативный вариант стора на ngxs
 
 	resizing!: Subscription
 

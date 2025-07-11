@@ -6,10 +6,19 @@ import {
   OnDestroy,
   Renderer2,
 } from '@angular/core';
-import { debounceTime, firstValueFrom, fromEvent, Subscription } from 'rxjs';
+import {
+	debounceTime,
+	fromEvent,
+	Subscription
+} from 'rxjs'
 import { PostComponent } from '../post/post.component';
 import { PostInputComponent } from '../../ui';
 import { GlobalStoreService, PostService } from '@tt/data-access';
+import { Store } from '@ngrx/store'
+import {
+	postActions,
+	selectPosts
+} from '../../../../../data-access/src/lib/store/posts'
 
 @Component({
   selector: 'app-post-feed',
@@ -21,27 +30,32 @@ export class PostFeedComponent implements OnDestroy, AfterViewInit {
   postService = inject(PostService);
   hostElement = inject(ElementRef);
   r2 = inject(Renderer2);
+	store = inject(Store)
 
-  feed = this.postService.posts;
+	feed = this.store.selectSignal(selectPosts)
 
   profile = inject(GlobalStoreService).me;
 
   resizing!: Subscription;
 
   constructor() {
-    firstValueFrom(this.postService.fetchPosts());
-  }
+		this.store.dispatch(postActions.loadPosts())
+		}
 
   onCreatePost(postText: string): void {
-    if (!postText) return console.log('No post text found.');
+		this.store.dispatch(postActions.createPost({
+			title: 'Клёвый пост',
+			content: postText,
+			authorId: this.profile()!.id,
+		}))
 
-    firstValueFrom(
-      this.postService.createPost({
-        title: 'Клёвый пост',
-        content: postText,
-        authorId: this.profile()!.id,
-      })
-    );
+    // firstValueFrom(
+    //   this.postService.createPost({
+    //     title: 'Клёвый пост',
+    //     content: postText,
+    //     authorId: this.profile()!.id,
+    //   })
+    // );
   }
 
   ngAfterViewInit() {

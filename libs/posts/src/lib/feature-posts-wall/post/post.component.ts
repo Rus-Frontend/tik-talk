@@ -20,7 +20,6 @@ import {
 import { Store } from '@ngrx/store'
 import {
 	postActions,
-	selectComments,
 } from '../../../../../data-access/src/lib/store/posts'
 import { firstValueFrom } from 'rxjs'
 
@@ -37,16 +36,15 @@ import { firstValueFrom } from 'rxjs'
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
 })
-export class PostComponent implements OnInit {
+export class PostComponent {
 	postService = inject(PostService);
 	store = inject(Store)
 
   post = input<Post>();
 
-  comments = signal<PostComment[]>([]);
+  // comments = signal<PostComment[]>([]);
 
 	profile = inject(GlobalStoreService).me;
-
 
 	onCreateComment(commentText: string) {
 		firstValueFrom(
@@ -55,16 +53,23 @@ export class PostComponent implements OnInit {
 			    authorId: this.profile()!.id,
 			    postId: this.post()!.id,
 			  }))
-			.then(async () => {
-				this.store.dispatch(postActions.loadCreatedComment({postId: this.post()!.id}))
+			.then(() => {
+				this.store.dispatch(postActions.loadPosts())
 
-				setTimeout(() => {
-					this.comments.set(this.store.selectSignal(selectComments)());
-				}, 100);
+
+
+				// - Мой вариант с получением комментариев по postId. Недостаток в том что комменты приходят асинхронно и приходится делать setTimeout.
+				// В других файлах стора закомментированные строки к этому же. В шаблоне, где выводятся комменты переделан вывод из постов, а не с сигнала comments в компоненте.
+
+				// this.store.dispatch(postActions.loadCreatedComment({postId: this.post()!.id}))
+
+			// 	setTimeout(() => {
+			// 		this.comments.set(this.store.selectSignal(selectComments)());
+			// 	}, 100);
 			})
 	}
 
-  // onCreateComment(commentText: string) {
+	// onCreateComment(commentText: string) {
 	// 	    firstValueFrom(
   //     this.postService.createComment({
   //       text: commentText,
@@ -79,8 +84,8 @@ export class PostComponent implements OnInit {
   //   });
   // }
 
-  async ngOnInit(): Promise<void> {
-    this.comments.set(this.post()!.comments)
-  }
+  // async ngOnInit(): Promise<void> {
+  //   this.comments.set(this.post()!.comments)
+  // }
 
 }

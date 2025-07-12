@@ -6,7 +6,7 @@ export const selectPosts = createSelector(
 	(posts) => posts
 )
 
-export const selectComments = createSelector(
-	postFeature.selectComments,
-	(comments) => comments
-)
+// export const selectComments = createSelector(
+// 	postFeature.selectComments,
+// 	(comments) => comments
+// )

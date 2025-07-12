@@ -12,7 +12,7 @@ export const postActions = createActionGroup({
 		'load posts': emptyProps(),
 		'load created posts': props<{posts: Post[]}>(),
 
-    'load created comment': props<{postId: number}>(),
-		'load comments': props<{comments: PostComment[]}>(),
+    // 'load created comment': props<{postId: number}>(),
+		// 'load comments': props<{comments: PostComment[]}>(),
   }
 })

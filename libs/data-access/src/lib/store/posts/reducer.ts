@@ -4,12 +4,12 @@ import { postActions} from './actions'
 
 export interface PostState {
   posts: Post[],
-  comments: PostComment[]
+  // comments: PostComment[]
 }
 
 export const initialState: PostState = {
 	posts: [],
-	comments: []
+	// comments: []
 }
 
 export const postFeature = createFeature({
@@ -23,9 +23,9 @@ export const postFeature = createFeature({
 			posts: payload.posts,
     })),
 
-		on(postActions.loadComments, (state, payload) => ({
-			...state,
-			comments: payload.comments
-		}))
+		// on(postActions.loadComments, (state, payload) => ({
+		// 	...state,
+		// 	comments: payload.comments
+		// }))
   )
 })

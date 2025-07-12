@@ -33,14 +33,14 @@ export class PostEffects {
     )
   })
 
-	loadComment = createEffect(() => {
-		return this.actions$.pipe(
-			ofType(postActions.loadCreatedComment),
-			switchMap((payload) => {
-				return this.postService.getCommentsByPostId(payload.postId)
-			}),
-			map((res) => postActions.loadComments({comments: res}))
-		)
-	})
+	// loadComment = createEffect(() => {
+	// 	return this.actions$.pipe(
+	// 		ofType(postActions.loadCreatedComment),
+	// 		switchMap((payload) => {
+	// 			return this.postService.getCommentsByPostId(payload.postId)
+	// 		}),
+	// 		map((res) => postActions.loadComments({comments: res}))
+	// 	)
+	// })
 
 }

@@ -43,6 +43,8 @@ export class PostFeedComponent implements OnDestroy, AfterViewInit {
 		}
 
   onCreatePost(postText: string): void {
+		if (!postText) return
+
 		this.store.dispatch(postActions.createPost({
 			title: 'Клёвый пост',
 			content: postText,

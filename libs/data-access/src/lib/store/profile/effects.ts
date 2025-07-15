@@ -21,4 +21,36 @@ export class ProfileEffects {
       map((res) => profileActions.profilesLoaded({profiles: res.items}))
     )
   })
+
+	subscribeToUser = createEffect(() => {
+		return this.actions$.pipe(
+			ofType(profileActions.subscribeToUser),
+			switchMap(({profileId}) => {
+				return this.profileService.subscribeToUser(profileId)
+			}),
+			map(() => profileActions.loadMySubscriptions())
+		)
+	})
+
+	loadMySubscriptions = createEffect(() => {
+		return this.actions$.pipe(
+			ofType(profileActions.loadMySubscriptions),
+			switchMap(() => {
+				return this.profileService.getMySubscriptions()
+			}),
+			map((res) => profileActions.saveMySubscriptionsId({
+				profilesId: res.items.map((profile) => {return profile.id})}))
+		)
+	})
+
+	unsubscribeToUser = createEffect(() => {
+		return this.actions$.pipe(
+			ofType(profileActions.unsubscribeToUser),
+			switchMap(({profileId}) => {
+				return this.profileService.unsubscribeToUser(profileId)
+			}),
+			map(() => profileActions.loadMySubscriptions())
+		)
+	})
+
 }

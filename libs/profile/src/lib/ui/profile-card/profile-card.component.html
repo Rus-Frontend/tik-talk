@@ -22,7 +22,26 @@
     </div>
 
     <div class="profile-card__action-btns">
-      <button class="btn">Подписаться</button>
+
+      @if (isSubscribe()) {
+      <button class="subscribe-btn" (click)="onUnsubscribe()">
+        <svg
+        class="subscribe-btn-svg"
+        icon="subscribe"
+      ></svg>
+      </button>
+
+        <button
+          class="btn to-setting-btn"
+          (click)="sendMessage(profile.id)"
+        >
+          Написать
+        </button>
+
+      } @else {
+        <button class="btn" (click)="onSubscribe()">Подписаться</button>
+      }
+
     </div>
   </div>
 }

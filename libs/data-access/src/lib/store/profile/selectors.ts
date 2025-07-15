@@ -10,3 +10,8 @@ export const selectProfileFilters = createSelector(
 	profileFeature.selectProfileFilters,
 	(profileFilters) => profileFilters
 )
+
+export const selectMySubscription = createSelector(
+	profileFeature.selectMySubscribtionsId,
+	(mySubscribtions) => mySubscribtions
+)

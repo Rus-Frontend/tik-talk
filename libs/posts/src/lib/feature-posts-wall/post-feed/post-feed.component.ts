@@ -27,7 +27,6 @@ import {
   styleUrl: './post-feed.component.scss',
 })
 export class PostFeedComponent implements OnDestroy, AfterViewInit {
-  postService = inject(PostService);
   hostElement = inject(ElementRef);
   r2 = inject(Renderer2);
 	store = inject(Store)

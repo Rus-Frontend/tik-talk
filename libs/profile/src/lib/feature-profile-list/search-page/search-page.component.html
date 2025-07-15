@@ -1,7 +1,16 @@
 <app-profile-filters></app-profile-filters>
 
-<div class="profile-card__wrapper">
-  @for (profile of profiles(); track profile.id) {
-    <app-profile-card [profile]="profile"></app-profile-card>
-  }
-</div>
+@if (mySubscriptions()) {
+  <div class="profile-card__wrapper">
+    @for (profile of profiles(); track profile.id) {
+      <app-profile-card
+        [profile]="profile"
+        [mySubscriptions]="mySubscriptions()"
+        (eventOnSubscribe)="onSubscribe($event)"
+        (eventOnUnsubscribe)="onUnsubscribe($event)"
+      ></app-profile-card>
+    }
+  </div>
+} @else {
+  <p>Идёт загрузка...</p>
+}

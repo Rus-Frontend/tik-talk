@@ -48,10 +48,16 @@ export class ChatWorkspaceMessagesWrapperComponent
   }
 
   async onSendMessage(messageText: string) {
-    await firstValueFrom(
-      this.chatService.sendMessage(this.chat().id, messageText)
-    );
-    await firstValueFrom(this.chatService.getChatById(this.chat().id));
+		this.chatService.wsAdapter.sendMessage(
+			messageText,
+			this.chat().id
+		)
+
+		// - старая вариант решения отправки сообщений
+    // await firstValueFrom(
+    //   this.chatService.sendMessage(this.chat().id, messageText)
+    // );
+    // await firstValueFrom(this.chatService.getChatById(this.chat().id));
   }
 
   ngAfterViewChecked() {

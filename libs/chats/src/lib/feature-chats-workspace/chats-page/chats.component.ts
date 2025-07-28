@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core'
 import { RouterOutlet } from '@angular/router';
 import { ChatsListComponent } from '../chats-list/chats-list.component';
 
@@ -8,4 +8,5 @@ import { ChatsListComponent } from '../chats-list/chats-list.component';
   templateUrl: './chats.component.html',
   styleUrl: './chats.component.scss',
 })
-export class ChatsPageComponent {}
+export class ChatsPageComponent {
+}

@@ -22,10 +22,11 @@
   }
 
   .message-text-box {
+    display: inline-block;
     padding: 8px 16px;
     background: var(--primary-color);
     max-width: 85%;
-    justify-self: end;
+//    justify-self: end;
     clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
     transform: scaleX(-1);
   }

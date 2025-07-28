@@ -6,7 +6,8 @@ import { DateTime } from 'luxon';
 })
 export class TimeFromPipe implements PipeTransform {
   transform(value: string | null, format?: string | null): string | null {
-    if (!value) return null;
+
+		if (!value) return null;
 
     const now = DateTime.now();
     const offset = now.offset;

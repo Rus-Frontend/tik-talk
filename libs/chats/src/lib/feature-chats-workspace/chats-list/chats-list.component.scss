@@ -1,6 +1,7 @@
 :host {
   border-right: var(--light-border);
   display: block;
+  overflow-y: scroll;
 }
 
 .chats-filters-input__wrapper {

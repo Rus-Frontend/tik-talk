@@ -108,3 +108,15 @@
 .sidebar-logo {
   cursor: pointer;
 }
+
+.menu-item-unread-message {
+  width: 26px;
+  height: 18px;
+  background: var(--primary-color);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  place-content: center;
+  color: var(--dark-color);
+}

@@ -75,28 +75,43 @@ export class ChatsService {
 				DateTime.fromISO(lastMessageDate).toFormat('dd.MM.yyyy').toString() ===
 				DateTime.fromISO(newMessageDate).toFormat('dd.MM.yyyy').toString()
 			) {
-				this.activeChatMessages.set([
-					...this.activeChatMessages(),
+				const currentChatMessages = this.activeChatMessages()
+				currentChatMessages[currentChatMessages.length - 1].messages = [
+					...currentChatMessages[currentChatMessages.length - 1].messages,
 					{
-						date: this.activeChatMessages()[
-							this.activeChatMessages().length - 1
-						].date,
-						messages: [
-							...this.activeChatMessages()[this.activeChatMessages().length - 1]
-								.messages,
-							{
-								id: message.data.id,
-								userFromId: message.data.author,
-								personalChatId: message.data.chat_id,
-								text: message.data.message,
-								createdAt: newMessageDate,
-								isRead: false,
-								user: authorProfile,
-								isMine: isMine()
-							}
-						]
-					}
-				])
+									id: message.data.id,
+									userFromId: message.data.author,
+									personalChatId: message.data.chat_id,
+									text: message.data.message,
+									createdAt: newMessageDate,
+									isRead: false,
+									user: authorProfile,
+									isMine: isMine()
+								}
+				]
+
+				// this.activeChatMessages.set([
+				// 	...this.activeChatMessages(),
+				// 	{
+				// 		date: this.activeChatMessages()[
+				// 			this.activeChatMessages().length - 1
+				// 		].date,
+				// 		messages: [
+				// 			...this.activeChatMessages()[this.activeChatMessages().length - 1]
+				// 				.messages,
+				// 			{
+				// 				id: message.data.id,
+				// 				userFromId: message.data.author,
+				// 				personalChatId: message.data.chat_id,
+				// 				text: message.data.message,
+				// 				createdAt: newMessageDate,
+				// 				isRead: false,
+				// 				user: authorProfile,
+				// 				isMine: isMine()
+				// 			}
+				// 		]
+				// 	}
+				// ])
 			} else {
 				this.activeChatMessages.set([
 					...this.activeChatMessages(),

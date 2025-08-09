@@ -2,13 +2,23 @@
 
 @if (mySubscriptions()) {
   <div class="profile-card__wrapper">
-    @for (profile of profiles(); track profile.id) {
+    @for (profile of profiles(); track profile.id; let last = $last) {
       <app-profile-card
         [profile]="profile"
         [mySubscriptions]="mySubscriptions()"
         (eventOnSubscribe)="onSubscribe($event)"
         (eventOnUnsubscribe)="onUnsubscribe($event)"
       ></app-profile-card>
+
+      @if (last) {
+        @defer (on viewport) {
+          <tt-infinite-scroll-trigger
+            (loaded)="timeToFetch()"
+          ></tt-infinite-scroll-trigger>
+        } @placeholder {
+          <div></div>
+        }
+      }
     }
   </div>
 } @else {

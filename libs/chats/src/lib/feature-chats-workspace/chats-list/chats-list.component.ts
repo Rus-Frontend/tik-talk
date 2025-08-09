@@ -1,5 +1,5 @@
 import {
-	AfterViewInit,
+	AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef,
 	Component,
 	ElementRef,
 	inject,
@@ -30,13 +30,15 @@ import { ChatsService } from '@tt/data-access';
 		RouterLinkActive
 	],
 	templateUrl: './chats-list.component.html',
-	styleUrl: './chats-list.component.scss'
+	styleUrl: './chats-list.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatsListComponent implements AfterViewInit, OnDestroy {
 	chatsService = inject(ChatsService)
 
 	hostElement = inject(ElementRef)
 	r2 = inject(Renderer2)
+	cdr = inject(ChangeDetectorRef)
 
 	resizing!: Subscription
 
@@ -54,6 +56,7 @@ export class ChatsListComponent implements AfterViewInit, OnDestroy {
 					})
 				})
 			)
+			this.cdr.detectChanges()
 		})
 	)
 

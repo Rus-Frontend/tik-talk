@@ -1,10 +1,10 @@
 import {
-	AfterViewInit,
+	AfterViewInit, ChangeDetectionStrategy,
 	Component,
 	ElementRef,
 	inject,
 	OnDestroy,
-	Renderer2,
+	Renderer2
 } from '@angular/core'
 import { debounceTime, fromEvent, Subscription } from 'rxjs'
 import { ProfileCardComponent } from '../../ui';
@@ -14,12 +14,18 @@ import {
 	selectFilteredProfiles, selectMySubscription
 } from '@tt/data-access'
 import { Store } from '@ngrx/store';
+import { InfiniteScrollTriggerComponent } from '@tt/common-ui'
 
 @Component({
 	selector: 'app-search-page',
-	imports: [ProfileCardComponent, ProfileFiltersComponent],
+	imports: [
+		ProfileCardComponent,
+		ProfileFiltersComponent,
+		InfiniteScrollTriggerComponent
+	],
 	templateUrl: './search-page.component.html',
-	styleUrl: './search-page.component.scss'
+	styleUrl: './search-page.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchPageComponent implements AfterViewInit, OnDestroy {
 	store = inject(Store)
@@ -66,10 +72,18 @@ export class SearchPageComponent implements AfterViewInit, OnDestroy {
 	}
 
 	onSubscribe(profileId: number) {
-		this.store.dispatch(profileActions.subscribeToUser({profileId: profileId})) // - реализация через стор
+		this.store.dispatch(
+			profileActions.subscribeToUser({ profileId: profileId })
+		)
 	}
 
 	onUnsubscribe(profileId: number) {
-		this.store.dispatch(profileActions.unsubscribeToUser({profileId: profileId}))
+		this.store.dispatch(
+			profileActions.unsubscribeToUser({ profileId: profileId })
+		)
+	}
+
+	timeToFetch() {
+		this.store.dispatch(profileActions.setPage({}))
 	}
 }

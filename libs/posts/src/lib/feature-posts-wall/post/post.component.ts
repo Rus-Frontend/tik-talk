@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	inject,
 	input,
@@ -35,6 +36,7 @@ import { firstValueFrom } from 'rxjs'
   ],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PostComponent {
 	postService = inject(PostService);

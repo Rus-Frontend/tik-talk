@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core'
 import { AvatarCircleComponent, TimeFromPipe } from '@tt/common-ui';
 import { LastMessageRes } from '@tt/data-access';
 
@@ -7,6 +7,7 @@ import { LastMessageRes } from '@tt/data-access';
   imports: [AvatarCircleComponent, TimeFromPipe],
   templateUrl: './chats-btn.component.html',
   styleUrl: './chats-btn.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatsBtnComponent {
   chat = input<LastMessageRes>();

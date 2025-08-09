@@ -1,4 +1,10 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core'
+import {
+	ChangeDetectionStrategy,
+	Component,
+	DestroyRef,
+	inject,
+	OnInit
+} from '@angular/core'
 
 import { AsyncPipe, NgForOf } from '@angular/common'
 import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component'
@@ -20,7 +26,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 		RouterLinkActive
 	],
 	templateUrl: './sidebar.component.html',
-	styleUrl: './sidebar.component.scss'
+	styleUrl: './sidebar.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidebarComponent implements OnInit {
 	profileService = inject(ProfileService)

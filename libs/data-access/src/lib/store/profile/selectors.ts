@@ -15,3 +15,13 @@ export const selectMySubscription = createSelector(
 	profileFeature.selectMySubscribtionsId,
 	(mySubscribtions) => mySubscribtions
 )
+
+export const selectProfilePageable = createSelector(
+	profileFeature.selectProfileFeatureState,
+	(state) => {
+		return {
+			page: state.page,
+			size: state.size
+		}
+	}
+)

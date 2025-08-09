@@ -1,12 +1,12 @@
 import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  inject,
-  OnDestroy,
-  Renderer2,
-  signal,
-} from '@angular/core';
+	AfterViewInit, ChangeDetectionStrategy,
+	Component,
+	ElementRef,
+	inject,
+	OnDestroy,
+	Renderer2,
+	signal
+} from '@angular/core'
 import {
   FormControl,
   FormGroup,
@@ -26,6 +26,7 @@ import { mask } from '@tt/common-ui';
   imports: [ReactiveFormsModule, MaskitoDirective],
   templateUrl: './my-forms-experiment.component.html',
   styleUrl: './my-forms-experiment.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MyFormsExperimentComponent implements OnDestroy, AfterViewInit {
   myMockService = inject(MyMockService);

@@ -36,7 +36,7 @@ export class ChatsService {
 
 	unreadMessages = signal<number | null>(null)
 
-	baseApiUrl = 'https://icherniakov.ru/yt-course/'
+	baseApiUrl = '/yt-course/'
 	chatsUrl = `${this.baseApiUrl}chat/`
 	messageUrl = `${this.baseApiUrl}message/`
 
@@ -56,62 +56,73 @@ export class ChatsService {
 		}
 
 		if (isNewMessage(message)) {
+			const me = this.me()
+			const companion = this.companion()
+			if (!me || !companion) return
+
 			const newMessageDate = message.data.created_at.replace(' ', 'T')
 			const lastMessageDate =
 				this.activeChatMessages()[this.activeChatMessages().length - 1].date
-
-			let authorProfile: Profile | undefined
-			let isMine = signal(false)
-
-			if (message.data.author === this.me()!.id) {
-				authorProfile = this.me()!
-				isMine.set(true)
-			} else {
-				authorProfile = this.companion()
-				isMine.set(false)
-			}
 
 			if (
 				DateTime.fromISO(lastMessageDate).toFormat('dd.MM.yyyy').toString() ===
 				DateTime.fromISO(newMessageDate).toFormat('dd.MM.yyyy').toString()
 			) {
-				const currentChatMessages = this.activeChatMessages()
-				currentChatMessages[currentChatMessages.length - 1].messages = [
-					...currentChatMessages[currentChatMessages.length - 1].messages,
+				this.activeChatMessages.set([
+					...this.activeChatMessages(),
 					{
-									id: message.data.id,
-									userFromId: message.data.author,
-									personalChatId: message.data.chat_id,
-									text: message.data.message,
-									createdAt: newMessageDate,
-									isRead: false,
-									user: authorProfile,
-									isMine: isMine()
-								}
-				]
+						...this.activeChatMessages()[this.activeChatMessages().length - 1],
+						messages: [
+							...this.activeChatMessages()[this.activeChatMessages().length - 1]
+								.messages,
+							{
+								id: message.data.id,
+								userFromId: message.data.author,
+								personalChatId: message.data.chat_id,
+								text: message.data.message,
+								createdAt: newMessageDate,
+								isRead: false,
+								user: message.data.author === me.id ? me : companion,
+								isMine: message.data.author === me.id
+							}
+						]
+					}
 
-				// this.activeChatMessages.set([
-				// 	...this.activeChatMessages(),
-				// 	{
-				// 		date: this.activeChatMessages()[
-				// 			this.activeChatMessages().length - 1
-				// 		].date,
-				// 		messages: [
-				// 			...this.activeChatMessages()[this.activeChatMessages().length - 1]
-				// 				.messages,
-				// 			{
-				// 				id: message.data.id,
-				// 				userFromId: message.data.author,
-				// 				personalChatId: message.data.chat_id,
-				// 				text: message.data.message,
-				// 				createdAt: newMessageDate,
-				// 				isRead: false,
-				// 				user: authorProfile,
-				// 				isMine: isMine()
-				// 			}
-				// 		]
-				// 	}
-				// ])
+					// ...this.activeChatMessages(),
+					// {
+					// 	date: this.activeChatMessages()[this.activeChatMessages().length - 1].date,
+					// 	messages: [
+					// 		...this.activeChatMessages()[this.activeChatMessages().length - 1].messages,
+					// 		{
+					// 			id: message.data.id,
+					// 			userFromId: message.data.author,
+					// 			personalChatId: message.data.chat_id,
+					// 			text: message.data.message,
+					// 			createdAt: newMessageDate,
+					// 			isRead: false,
+					// 			user: message.data.author === me.id ? me : companion,
+					// 			isMine: message.data.author === me.id
+					// 		}
+					// 	]
+					// }
+
+					// ...this.activeChatMessages(),
+					// {...this.activeChatMessages()[this.activeChatMessages().length - 1],
+					// 	messages: [
+					// 		...this.activeChatMessages()[this.activeChatMessages().length - 1].messages,
+					// 		{
+					// 			id: message.data.id,
+					// 			userFromId: message.data.author,
+					// 			personalChatId: message.data.chat_id,
+					// 			text: message.data.message,
+					// 			createdAt: newMessageDate,
+					// 			isRead: false,
+					// 			user: message.data.author === me.id ? me : companion,
+					// 			isMine: message.data.author === me.id
+					// 		}
+					// 	]
+					// }
+				])
 			} else {
 				this.activeChatMessages.set([
 					...this.activeChatMessages(),
@@ -125,8 +136,8 @@ export class ChatsService {
 								text: message.data.message,
 								createdAt: newMessageDate,
 								isRead: false,
-								user: authorProfile,
-								isMine: isMine()
+								user: message.data.author === me.id ? me : companion,
+								isMine: message.data.author === me.id
 							}
 						]
 					}

@@ -1,99 +1,107 @@
 import {
-  AfterViewChecked,
-  AfterViewInit,
-  Component,
-  ElementRef,
-  inject,
-  input,
-  OnDestroy,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
-import { ChatWorkspaceMessageComponent } from '../chat-workspace-message/chat-workspace-message.component';
-import { MessageInputComponent } from '../../../ui';
+	AfterViewChecked,
+	AfterViewInit,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	Component,
+	ElementRef,
+	inject,
+	input,
+	OnDestroy,
+	Renderer2,
+	ViewChild
+} from '@angular/core'
+import { ChatWorkspaceMessageComponent } from '../chat-workspace-message/chat-workspace-message.component'
+import { MessageInputComponent } from '../../../ui'
 import {
-  debounceTime,
-  firstValueFrom,
-  fromEvent,
-  Subscription,
-  timer,
-} from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { TimeFromPipe } from '@tt/common-ui';
-import { Chat, ChatsService } from '@tt/data-access';
+	debounceTime,
+	firstValueFrom,
+	fromEvent,
+	Subscription,
+	timer
+} from 'rxjs'
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
+import { TimeFromPipe } from '@tt/common-ui'
+import { Chat, ChatsService } from '@tt/data-access'
 
 @Component({
-  selector: 'app-chat-workspace-messages-wrapper',
-  imports: [ChatWorkspaceMessageComponent, MessageInputComponent, TimeFromPipe],
-  templateUrl: './chat-workspace-messages-wrapper.component.html',
-  styleUrl: './chat-workspace-messages-wrapper.component.scss',
+	selector: 'app-chat-workspace-messages-wrapper',
+	imports: [ChatWorkspaceMessageComponent, MessageInputComponent, TimeFromPipe],
+	templateUrl: './chat-workspace-messages-wrapper.component.html',
+	styleUrl: './chat-workspace-messages-wrapper.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatWorkspaceMessagesWrapperComponent
-  implements OnDestroy, AfterViewInit, AfterViewChecked
+	implements OnDestroy, AfterViewInit, AfterViewChecked
 {
-  chatService = inject(ChatsService);
-  hostElement = inject(ElementRef);
-  r2 = inject(Renderer2);
+	chatService = inject(ChatsService)
+	hostElement = inject(ElementRef)
+	r2 = inject(Renderer2)
+	cdr = inject(ChangeDetectorRef)
 
-  resizing!: Subscription;
+	resizing!: Subscription
 
-  @ViewChild('messagesWrapper') messageWrapper!: ElementRef;
+	@ViewChild('messagesWrapper') messageWrapper!: ElementRef
 
-  chat = input.required<Chat>();
+	chat = input.required<Chat>()
 
-  messages = this.chatService.activeChatMessages;
+	messages = this.chatService.activeChatMessages
 
-  constructor() {
-    this.updateChat();
-  }
+	constructor() {
+		this.updateChat()
+	}
 
-  async onSendMessage(messageText: string) {
-		this.chatService.wsAdapter.sendMessage(
-			messageText,
-			this.chat().id
-		)
+	async onSendMessage(messageText: string) {
+		this.chatService.wsAdapter.sendMessage(messageText, this.chat().id)
 
-		// - старая вариант решения отправки сообщений
-    // await firstValueFrom(
-    //   this.chatService.sendMessage(this.chat().id, messageText)
-    // );
-    // await firstValueFrom(this.chatService.getChatById(this.chat().id));
-  }
+		setTimeout(() => {
+			this.scrollToBottom()
+		}, 200)
 
-  ngAfterViewChecked() {
-    this.scrollToBottom();
-  }
+		// this.cdr.markForCheck()
+		// this.cdr.detectChanges()
 
-  ngAfterViewInit() {
-    this.resizeFeed();
+		// - старый вариант решения отправки сообщений
+		// await firstValueFrom(
+		//   this.chatService.sendMessage(this.chat().id, messageText)
+		// );
+		// await firstValueFrom(this.chatService.getChatById(this.chat().id));
+	}
 
-    this.resizing = fromEvent(window, 'resize')
-      .pipe(debounceTime(30))
-      .subscribe(() => {
-        this.resizeFeed();
-      });
-  }
+	ngAfterViewChecked() {
+		this.scrollToBottom()
+	}
 
-  ngOnDestroy() {
-    this.resizing.unsubscribe();
-  }
+	ngAfterViewInit() {
+		this.resizeFeed()
 
-  resizeFeed() {
-    const { top } = this.hostElement.nativeElement.getBoundingClientRect();
-    const height = window.innerHeight - top - 130;
-    this.r2.setStyle(this.hostElement.nativeElement, 'height', `${height}px`);
-  }
+		this.resizing = fromEvent(window, 'resize')
+			.pipe(debounceTime(30))
+			.subscribe(() => {
+				this.resizeFeed()
+			})
+	}
 
-  scrollToBottom() {
-    this.messageWrapper.nativeElement.scrollTop =
-      this.messageWrapper.nativeElement.scrollHeight;
-  }
+	ngOnDestroy() {
+		this.resizing.unsubscribe()
+	}
 
-  updateChat() {
-    timer(50000, 50000)
-      .pipe(takeUntilDestroyed())
-      .subscribe(async () => {
-        await firstValueFrom(this.chatService.getChatById(this.chat().id));
-      });
-  }
+	resizeFeed() {
+		const { top } = this.hostElement.nativeElement.getBoundingClientRect()
+		const height = window.innerHeight - top - 130
+		this.r2.setStyle(this.hostElement.nativeElement, 'height', `${height}px`)
+	}
+
+	scrollToBottom() {
+		this.messageWrapper.nativeElement.scrollTop =
+			this.messageWrapper.nativeElement.scrollHeight
+	}
+
+	updateChat() {
+		timer(50000, 50000)
+			.pipe(takeUntilDestroyed())
+			.subscribe(async () => {
+				await firstValueFrom(this.chatService.getChatById(this.chat().id))
+			})
+	}
 }

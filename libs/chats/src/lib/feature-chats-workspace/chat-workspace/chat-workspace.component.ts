@@ -1,6 +1,7 @@
 import {
+	ChangeDetectionStrategy, ChangeDetectorRef,
 	Component,
-	inject,
+	inject
 } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -22,11 +23,13 @@ import { ChatsService } from '@tt/data-access';
   ],
   templateUrl: './chat-workspace.component.html',
   styleUrl: './chat-workspace.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatWorkspaceComponent {
   route = inject(ActivatedRoute);
   router = inject(Router);
   chatsService = inject(ChatsService);
+	cdr = inject(ChangeDetectorRef)
 
   activeChat$ = this.route.params.pipe(
     switchMap(({ id }) => {

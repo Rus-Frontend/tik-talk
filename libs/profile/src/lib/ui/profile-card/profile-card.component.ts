@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	EventEmitter,
 	inject,
@@ -18,7 +19,8 @@ import { Router } from '@angular/router'
 	standalone: true,
 	imports: [ImgUrlPipe, SvgIconComponent],
 	templateUrl: './profile-card.component.html',
-	styleUrl: './profile-card.component.scss'
+	styleUrl: './profile-card.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileCardComponent implements OnInit, OnChanges {
 	@Input() profile!: Profile

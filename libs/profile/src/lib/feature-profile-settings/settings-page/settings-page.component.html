@@ -62,18 +62,22 @@
 
     <label class="tt-form-label">
       <span class="tt-form-label__text">Навыки (стэк)</span>
-      <input
-        placeholder="Введите данные"
-        type="text"
-        class="tt-form-input"
-        formControlName="stack"
-      />
+
+      <tt-stack-input formControlName="stack"></tt-stack-input>
+
+<!--      <input-->
+<!--        placeholder="Введите данные"-->
+<!--        type="text"-->
+<!--        class="tt-form-input"-->
+<!--        formControlName="stack"-->
+<!--      />-->
     </label>
   </div>
 
   <div>
-    <div class="btn-box">
+    <div class="btn-box mt20">
       <button
+        type="button"
         class="btn"
         (click)="onSave()"
       >Сохранить

@@ -13,32 +13,37 @@ import {
 
 import { Router } from '@angular/router';
 import { AuthService } from '@tt/data-access';
+import { TtInputComponent } from '@tt/common-ui'
 
 @Component({
-  selector: 'app-login-page',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.scss',
+	selector: 'app-login-page',
+	standalone: true,
+	imports: [ReactiveFormsModule, TtInputComponent],
+	templateUrl: './login-page.component.html',
+	styleUrl: './login-page.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginPageComponent {
-  authService = inject(AuthService);
-  router = inject(Router);
+	authService = inject(AuthService)
+	router = inject(Router)
 
-  isPasswordVisible = signal<boolean>(false);
+	isPasswordVisible = signal<boolean>(false)
 
-  form = new FormGroup({
-    username: new FormControl<string | null>(null, Validators.required),
-    password: new FormControl<string | null>(null, Validators.required),
-  });
+	form = new FormGroup({
+		username: new FormControl<string | null>(null, Validators.required),
+		password: new FormControl<string | null>(null, Validators.required)
+	})
 
-  onSubmit() {
-    if (this.form.valid) {
-      //@ts-ignore
-      this.authService.login(this.form.value).subscribe((res) => {
-        this.router.navigate(['']);
-      });
-    }
-  }
+	// ngOnInit() {
+	// 	this.form.controls.username.disable()
+	// }
+
+	onSubmit() {
+		if (this.form.valid) {
+			//@ts-ignore
+			this.authService.login(this.form.value).subscribe((res) => {
+				this.router.navigate([''])
+			})
+		}
+	}
 }

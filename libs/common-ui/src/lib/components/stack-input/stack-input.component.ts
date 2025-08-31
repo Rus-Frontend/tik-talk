@@ -37,10 +37,12 @@ export class StackInputComponent implements ControlValueAccessor {
 		return this.#disabled
 	}
 
-	innerInput =''
+	innerInput = ''
 
-	@HostListener('keydown.enter')
-	onEnter(){
+	@HostListener('keydown.enter', ['$event'])
+	onEnter(event: KeyboardEvent) {
+		event.stopPropagation()
+		event.preventDefault()
 		if (!this.innerInput) return
 
 		this.value$.next([...this.value$.value, this.innerInput])

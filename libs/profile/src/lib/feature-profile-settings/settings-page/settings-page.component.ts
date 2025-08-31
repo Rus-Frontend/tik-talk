@@ -9,7 +9,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { AvatarUploadComponent, ProfileHeaderComponent } from '../../ui';
 import { ProfileService } from '@tt/data-access';
-import { StackInputComponent } from '@tt/common-ui'
+import { AddressInputComponent, StackInputComponent } from '@tt/common-ui'
 
 @Component({
 	selector: 'app-settings-page',
@@ -17,7 +17,8 @@ import { StackInputComponent } from '@tt/common-ui'
 		ProfileHeaderComponent,
 		ReactiveFormsModule,
 		AvatarUploadComponent,
-		StackInputComponent
+		StackInputComponent,
+		AddressInputComponent
 	],
 	templateUrl: './settings-page.component.html',
 	styleUrl: './settings-page.component.scss',
@@ -36,8 +37,9 @@ export class SettingsPageComponent {
 		lastName: ['', Validators.required],
 		username: [{ value: '', disabled: true }, Validators.required],
 		description: [''],
-		stack: []
+		stack: [],
 		// stack: [{value: '', disabled: true}]
+		city: [null],
 	})
 
 	constructor() {
@@ -47,9 +49,12 @@ export class SettingsPageComponent {
 				...this.profileService.me()
 			})
 		})
+		console.log(this.profileService.me()?.city)
 	}
 
 	onSave() {
+		console.log(this.profileService.me()?.city)
+
 		this.form.markAsTouched()
 		this.form.updateValueAndValidity()
 
@@ -65,8 +70,8 @@ export class SettingsPageComponent {
 		firstValueFrom(
 			//@ts-ignore
 			this.profileService.patchProfile({
-				...this.form.value,
- 			})
+				...this.form.value
+			})
 		)
 	}
 }

@@ -41,9 +41,9 @@ export interface DadataSuggestion {
 		street_fias_id: null
 		street_kladr_id: null
 		street_with_type: null
-		street_type: null
+		street_type: ''
 		street_type_full: null
-		street: null
+		street: ''
 		stead_fias_id: null
 		stead_cadnum: null
 		stead_type: null
@@ -53,9 +53,9 @@ export interface DadataSuggestion {
 		house_kladr_id: null
 		house_cadnum: null
 		house_flat_count: null
-		house_type: null
+		house_type: ''
 		house_type_full: null
-		house: null
+		house: ''
 		block_type: null
 		block_type_full: null
 		block: null

@@ -1,12 +1,12 @@
 import {
 	ChangeDetectionStrategy,
 	Component,
-	effect,
-	inject,
+	effect, ElementRef, HostListener,
+	inject, Renderer2,
 	ViewChild
 } from '@angular/core'
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { firstValueFrom } from 'rxjs';
+import { debounceTime, firstValueFrom, fromEvent, Subscription } from 'rxjs'
 import { AvatarUploadComponent, ProfileHeaderComponent } from '../../ui';
 import { ProfileService } from '@tt/data-access';
 import { AddressInputComponent, StackInputComponent } from '@tt/common-ui'
@@ -73,5 +73,38 @@ export class SettingsPageComponent {
 				...this.form.value
 			})
 		)
+	}
+
+	@HostListener('click', ['$event'])
+	onClick(event: MouseEvent) {
+		event.stopPropagation()
+		event.preventDefault()
+	}
+
+
+	// Ресайз:
+	hostElement = inject(ElementRef)
+	r2 = inject(Renderer2)
+	resizing!: Subscription
+
+
+	ngAfterViewInit() {
+		this.resizeFeed()
+
+		this.resizing = fromEvent(window, 'resize')
+			.pipe(debounceTime(50))
+			.subscribe(() => {
+				this.resizeFeed()
+			})
+	}
+
+	ngOnDestroy() {
+		this.resizing.unsubscribe()
+	}
+
+	resizeFeed() {
+		const { top } = this.hostElement.nativeElement.getBoundingClientRect()
+		const height = window.innerHeight - top - 24
+		this.r2.setStyle(this.hostElement.nativeElement, 'height', `${height}px`)
 	}
 }

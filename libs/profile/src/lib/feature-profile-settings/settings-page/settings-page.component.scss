@@ -3,6 +3,7 @@
   grid-gap: 48px;
   grid-template-columns: 332px 1fr;
   padding: 24px;
+  overflow-y: scroll;
 }
 
 .profile-form__wrapper {
@@ -12,7 +13,7 @@
   border: 1px solid var(--light-color);
   background: var(--dark-color);
   padding: 32px;
-  height: calc(100dvh - (24px * 4));
+//  height: calc(100dvh - (24px * 4));
 }
 
 .profile-form {

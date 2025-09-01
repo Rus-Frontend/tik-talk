@@ -1,7 +1,7 @@
 import {
-	ChangeDetectionStrategy,
+	ChangeDetectionStrategy, ChangeDetectorRef,
 	Component,
-	forwardRef,
+	forwardRef, inject,
 	input, signal
 } from '@angular/core'
 import { CommonModule } from '@angular/common'
@@ -32,6 +32,8 @@ export class TtInputComponent implements ControlValueAccessor {
 
 	disabled = signal<boolean>(false)
 
+	cdr = inject(ChangeDetectorRef)
+
 	onChange: any
 	onTouched: any
 
@@ -39,6 +41,9 @@ export class TtInputComponent implements ControlValueAccessor {
 
 	writeValue(val: string | null) {
 		this.value = val
+
+		this.cdr.detectChanges()
+
 	}
 
 	registerOnChange(fn: any): void {
@@ -55,5 +60,7 @@ export class TtInputComponent implements ControlValueAccessor {
 
 	onModelChange(val: string | null) {
 		this.onChange(val)
+
+		this.cdr.detectChanges()
 	}
 }

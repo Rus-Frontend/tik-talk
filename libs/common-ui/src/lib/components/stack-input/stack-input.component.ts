@@ -87,4 +87,5 @@ export class StackInputComponent implements ControlValueAccessor {
 		this.value$.next(tags)
 		this.onChange(this.value$.value)
 	}
+
 }

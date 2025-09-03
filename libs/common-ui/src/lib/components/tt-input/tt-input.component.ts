@@ -1,8 +1,8 @@
 import {
 	ChangeDetectionStrategy, ChangeDetectorRef,
-	Component,
+	Component, EventEmitter,
 	forwardRef, inject,
-	input, signal
+	input, Output, signal
 } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import {
@@ -32,10 +32,12 @@ export class TtInputComponent implements ControlValueAccessor {
 
 	disabled = signal<boolean>(false)
 
+	@Output() isTouched = new EventEmitter()
+
 	cdr = inject(ChangeDetectorRef)
 
 	onChange: any
-	onTouched: any
+	onTouchedFn: any
 
 	value: string | null = null
 
@@ -43,7 +45,6 @@ export class TtInputComponent implements ControlValueAccessor {
 		this.value = val
 
 		this.cdr.detectChanges()
-
 	}
 
 	registerOnChange(fn: any): void {
@@ -51,7 +52,7 @@ export class TtInputComponent implements ControlValueAccessor {
 	}
 
 	registerOnTouched(fn: any): void {
-		this.onTouched = fn
+		this.onTouchedFn = fn
 	}
 
 	setDisabledState?(isDisabled: boolean): void {
@@ -63,4 +64,10 @@ export class TtInputComponent implements ControlValueAccessor {
 
 		this.cdr.detectChanges()
 	}
+
+	onTouched() {
+		this.onTouchedFn()
+		this.isTouched.emit()
+	}
+
 }

@@ -1,8 +1,8 @@
 import {
 	ChangeDetectionStrategy, ChangeDetectorRef,
 	Component, EventEmitter,
-	forwardRef,
-	inject, Output, signal
+	forwardRef, HostListener,
+	inject, input, Output, signal
 } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { TtInputComponent } from '@tt/common-ui'
@@ -59,8 +59,8 @@ export class CompaniesInputComponent implements ControlValueAccessor {
 		})
 	)
 
-	writeValue(companyName: any): void {
-		this.innerSearchControl.patchValue(companyName,
+	writeValue(companyData: any): void {
+		this.innerSearchControl.patchValue(companyData,
 			{
 				emitEvent: false
 			})
@@ -78,12 +78,14 @@ export class CompaniesInputComponent implements ControlValueAccessor {
 
 	}
 
-	onChange(value: any) {}
+	onChange(value: any) {
+	}
 
 	onTouched() {
-		console.log('onTouched')
-		this.isDropdownOpened.set(false)
-	}
+		setTimeout(() => {
+			this.isDropdownOpened.set(false)}, 200)
+		}
+
 
 	onSuggestionPick(suggest: DadataCompaniesSuggestion) {
 		this.isDropdownOpened.set(false)

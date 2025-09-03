@@ -7,6 +7,7 @@
 <tt-input
   [formControl]="innerSearchControl"
   placeholder="Поиск компании по наименованию"
+  (isTouched)="onTouched()"
 ></tt-input>
 
 @if (suggestions$ | async; as suggestions) {

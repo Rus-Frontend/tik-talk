@@ -1,8 +1,8 @@
 import {
 	AfterViewInit, ChangeDetectionStrategy,
 	Component,
-	ElementRef,
-	inject,
+	ElementRef, HostListener,
+	inject, input,
 	OnDestroy,
 	Renderer2,
 	signal
@@ -188,4 +188,9 @@ export class MyFormsExperimentComponent implements OnDestroy, AfterViewInit {
 		this.paymentForm.controls.receiverKPP.setValue(companyData.companyKpp)
 	}
 
+	@HostListener('click', ['$event'])
+	onClick(event: MouseEvent) {
+		event.stopPropagation()
+		event.preventDefault()
+	}
 }

@@ -20,7 +20,7 @@
   <div class="recipient-wrapper">
     <h4 style="grid-column-start: 1; grid-column-end: 3">Получатель</h4>
 
-    <div style="display: flex; gap: 10px">
+    <div style="display: flex; gap: 10px; grid-column-start: 1; grid-column-end: 3">
       <button
         (click)="isLegal()"
         type="button"
@@ -40,6 +40,12 @@
     </div>
 
     @if (!isReceiverPerson()) {
+
+      <tt-companies-input
+        style="grid-column-start: 1; grid-column-end: 3"
+        (pickedCompany) = "onFillCompanyData($event)"
+      ></tt-companies-input>
+
       <input
         class="my-tt-input"
         formControlName="receiverName"

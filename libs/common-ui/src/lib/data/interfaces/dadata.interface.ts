@@ -1,4 +1,4 @@
-export interface DadataSuggestion {
+export interface DadataAddressSuggestion {
 	value: string
 	unrestricted_value: string
 	data: {
@@ -13,70 +13,70 @@ export interface DadataSuggestion {
 		region_type: string
 		region_type_full: string
 		region: string
-		area_fias_id: null
-		area_kladr_id: null
-		area_with_type: null
-		area_type: null
-		area_type_full: null
-		area: null
-		city_fias_id: string
+		area_fias_id: number
+		area_kladr_id: number
+		area_with_type: string
+		area_type: string
+		area_type_full: string
+		area: string
+		city_fias_id: number
 		city_kladr_id: number
 		city_with_type: string
 		city_type: string
 		city_type_full: string
 		city: string
-		city_area: null
-		city_district_fias_id: null
-		city_district_kladr_id: null
-		city_district_with_type: null
-		city_district_type: null
-		city_district_type_full: null
-		city_district: null
-		settlement_fias_id: null
-		settlement_kladr_id: null
-		settlement_with_type: null
-		settlement_type: null
-		settlement_type_full: null
-		settlement: null
-		street_fias_id: null
-		street_kladr_id: null
-		street_with_type: null
-		street_type: ''
-		street_type_full: null
-		street: ''
-		stead_fias_id: null
-		stead_cadnum: null
-		stead_type: null
-		stead_type_full: null
-		stead: null
-		house_fias_id: null
-		house_kladr_id: null
-		house_cadnum: null
-		house_flat_count: null
-		house_type: ''
-		house_type_full: null
-		house: ''
-		block_type: null
-		block_type_full: null
-		block: null
-		entrance: null
-		floor: null
-		flat_fias_id: null
-		flat_cadnum: null
-		flat_type: null
-		flat_type_full: null
-		flat: null
-		flat_area: null
-		square_meter_price: null
-		flat_price: null
-		room_fias_id: null
-		room_cadnum: null
-		room_type: null
-		room_type_full: null
-		room: null
-		postal_box: null
+		city_area: string
+		city_district_fias_id: number
+		city_district_kladr_id: number
+		city_district_with_type: string
+		city_district_type: string
+		city_district_type_full: string
+		city_district: string
+		settlement_fias_id: number
+		settlement_kladr_id: number
+		settlement_with_type: string
+		settlement_type: string
+		settlement_type_full: string
+		settlement: string
+		street_fias_id: number
+		street_kladr_id: number
+		street_with_type: string
+		street_type: string
+		street_type_full: string
+		street: string
+		stead_fias_id: number
+		stead_cadnum: string
+		stead_type: string
+		stead_type_full: string
+		stead: string
+		house_fias_id: number
+		house_kladr_id: number
+		house_cadnum: string
+		house_flat_count: string
+		house_type: string
+		house_type_full: string
+		house: string
+		block_type: string
+		block_type_full: string
+		block: string
+		entrance: string
+		floor: number
+		flat_fias_id: number
+		flat_cadnum: string
+		flat_type: string
+		flat_type_full: string
+		flat: number
+		flat_area: string
+		square_meter_price: string
+		flat_price: string
+		room_fias_id: number
+		room_cadnum: string
+		room_type: string
+		room_type_full: string
+		room: string
+		postal_box: string
 		fias_id: string
-		fias_code: null
+		fias_code: number
 		fias_level: number
 		fias_actuality_state: number
 		kladr_id: number
@@ -86,19 +86,205 @@ export interface DadataSuggestion {
 		oktmo: number
 		tax_office: number
 		tax_office_legal: number
-		timezone: null
+		timezone: string
 		geo_lat: string
 		geo_lon: string
-		beltway_hit: null
-		beltway_distance: null
-		metro: null
-		divisions: null
+		beltway_hit: string
+		beltway_distance: string
+		metro: string
+		divisions: string
 		qc_geo: number
-		qc_complete: null
-		qc_house: null
-		history_values: []
-		unparsed_parts: null
-		source: null
-		qc: null
+		qc_complete: string
+		qc_house: string
+		history_values: string
+		unparsed_parts: string
+		source: string
+		qc: string
+	}
+}
+
+export interface DadataCompaniesSuggestion {
+	value: string
+	unrestricted_value: string
+	data: {
+		kpp: number
+		kpp_largest: number
+		capital: string
+		invalid: string
+		management: {
+			name: string
+			post: string
+			start_date: number
+			disqualified: string
+		}
+		founders: string
+		managers: string
+		predecessors: string
+		successors: string
+		branch_type: string
+		branch_count: number
+		source: string
+		qc: string
+		hid: string
+		type: string
+		state: {
+			status: string
+			code: number
+			actuality_date: number
+			registration_date: number
+			liquidation_date: number
+		}
+		opf: {
+			type: number
+			code: number
+			full: string
+			short: string
+		}
+		name: {
+			full_with_opf: string
+			short_with_opf: string
+			latin: string
+			full: string
+			short: string
+		}
+		inn: number
+		ogrn: number
+		okpo: number
+		okato: number
+		oktmo: number
+		okogu: number
+		okfs: number
+		okved: number
+		okveds: string
+		authorities: string
+		documents: string
+		licenses: string
+		finance: string
+		address: {
+			value: string
+			unrestricted_value: string
+			invalidity: string
+			data: {
+				postal_code: number
+				country: string
+				country_iso_code: string
+				federal_district: string
+				region_fias_id: string
+				region_kladr_id: number
+				region_iso_code: string
+				region_with_type: string
+				region_type: string
+				region_type_full: string
+				region: string
+				area_fias_id: number
+				area_kladr_id: null
+				area_with_type: null
+				area_type: null
+				area_type_full: null
+				area: null
+				city_fias_id: string
+				city_kladr_id: number
+				city_with_type: string
+				city_type: string
+				city_type_full: string
+				city: string
+				city_area: string
+				city_district_fias_id: null
+				city_district_kladr_id: null
+				city_district_with_type: string
+				city_district_type: string
+				city_district_type_full: string
+				city_district: string
+				settlement_fias_id: null
+				settlement_kladr_id: null
+				settlement_with_type: null
+				settlement_type: null
+				settlement_type_full: null
+				settlement: null
+				street_fias_id: string
+				street_kladr_id: number
+				street_with_type: string
+				street_type: string
+				street_type_full: string
+				street: string
+				stead_fias_id: null
+				stead_cadnum: null
+				stead_type: null
+				stead_type_full: null
+				stead: null
+				house_fias_id: string
+				house_kladr_id: number
+				house_cadnum: string
+				house_flat_count: null
+				house_type: string
+				house_type_full: string
+				house: number
+				block_type: null
+				block_type_full: null
+				block: null
+				entrance: null
+				floor: null
+				flat_fias_id: null
+				flat_cadnum: null
+				flat_type: null
+				flat_type_full: null
+				flat: null
+				flat_area: number
+				square_meter_price: number
+				flat_price: null
+				room_fias_id: null
+				room_cadnum: null
+				room_type: null
+				room_type_full: null
+				room: null
+				postal_box: null
+				fias_id: string
+				fias_code: number
+				fias_level: number
+				fias_actuality_state: number
+				kladr_id: number
+				geoname_id: number
+				capital_marker: number
+				okato: number
+				oktmo: number
+				tax_office: number
+				tax_office_legal: number
+				timezone: string
+				geo_lat: string
+				geo_lon: string
+				beltway_hit: string
+				beltway_distance: null
+				metro: [
+					{
+						name: string
+						line: string
+						distance: string
+					},
+					{
+						name: string
+						line: string
+						distance: string
+					},
+					{
+						name: string
+						line: string
+						distance: string
+					}
+				]
+				divisions: string
+				qc_geo: string
+				qc_complete: string
+				qc_house: string
+				history_values: string
+				unparsed_parts: string
+				source: string
+				qc: number
+			}
+		}
+		phones: string
+		emails: string
+		ogrn_date: number
+		okved_type: number
+		employee_count: number
 	}
 }

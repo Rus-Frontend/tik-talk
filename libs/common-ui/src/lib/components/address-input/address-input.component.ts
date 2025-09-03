@@ -14,7 +14,7 @@ import {
 import { DadataService } from '../../data'
 import { debounceTime, switchMap, tap } from 'rxjs'
 import { TtInputComponent } from '../tt-input/tt-input.component'
-import { DadataSuggestion } from '../../data/interfaces/dadata.interface'
+import { DadataAddressSuggestion } from '../../data/interfaces/dadata.interface'
 
 @Component({
 	selector: 'tt-address-input',
@@ -132,7 +132,7 @@ export class AddressInputComponent implements ControlValueAccessor {
 
 	onTouched() {}
 
-	onSuggestionPick(suggest: DadataSuggestion) {
+	onSuggestionPick(suggest: DadataAddressSuggestion) {
 
 		this.isDropdownOpened.set(false)
 

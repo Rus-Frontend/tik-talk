@@ -4,53 +4,46 @@ import {
 	inject,
 	OnDestroy
 } from '@angular/core'
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, startWith, Subscription } from 'rxjs';
-import {
-	profileActions,
-	selectProfileFilters
-} from '@tt/data-access'
-import { Store } from '@ngrx/store';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { debounceTime, startWith, Subscription } from 'rxjs'
+import { profileActions, selectProfileFilters } from '@tt/data-access'
+import { Store } from '@ngrx/store'
 
 @Component({
-  selector: 'app-profile-filters',
-  imports: [FormsModule, ReactiveFormsModule],
-  templateUrl: './profile-filters.component.html',
-  styleUrl: './profile-filters.component.scss',
+	selector: 'app-profile-filters',
+	imports: [FormsModule, ReactiveFormsModule],
+	templateUrl: './profile-filters.component.html',
+	styleUrl: './profile-filters.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileFiltersComponent implements OnDestroy {
-  fb = inject(FormBuilder);
-  store = inject(Store);
+	fb = inject(FormBuilder)
+	store = inject(Store)
 	// store = inject(profileStore) //-альтернативный вариант стора на signal ngrx
 
 	filters = this.store.selectSignal(selectProfileFilters)
 	// filters = this.store.profileFilters //-альтернативный вариант стора на signal ngrx
 
+	searchForm = this.fb.group({
+		firstName: [''],
+		lastName: [''],
+		stack: ['']
+	})
 
-  searchForm = this.fb.group({
-    firstName: [''],
-    lastName: [''],
-    stack: [''],
-  });
+	searchFormSub!: Subscription
 
-  searchFormSub!: Subscription;
-
-  constructor() {
+	constructor() {
 		this.searchForm.patchValue(this.filters())
 		this.searchFormSub = this.searchForm.valueChanges
-      .pipe(
-        startWith(this.filters()),
-        debounceTime(1000),
-      )
-      .subscribe(formValue => {
-				this.store.dispatch(profileActions.filterEvents({filters: formValue}))
+			.pipe(startWith(this.filters()), debounceTime(1000))
+			.subscribe((formValue) => {
+				this.store.dispatch(profileActions.filterEvents({ filters: formValue }))
 				// this.store.filterProfiles(formValue) //-альтернативный вариант стора на signal ngrx
 				// this.store.dispatch(new FilterEvents(formValue)) //-альтернативный вариант стора на ngxs
-      });
-  }
+			})
+	}
 
-  ngOnDestroy() {
-    this.searchFormSub.unsubscribe();
-  }
+	ngOnDestroy() {
+		this.searchFormSub.unsubscribe()
+	}
 }

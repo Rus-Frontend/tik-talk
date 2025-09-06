@@ -1,8 +1,12 @@
 import {
-	ChangeDetectionStrategy, ChangeDetectorRef,
-	Component, EventEmitter,
-	forwardRef, HostListener,
-	inject, input, Output, signal
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	Component,
+	EventEmitter,
+	forwardRef,
+	inject,
+	Output,
+	signal
 } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { TtInputComponent } from '@tt/common-ui'
@@ -14,9 +18,7 @@ import {
 } from '@angular/forms'
 import { DadataService } from '../../../../../../common-ui/src/lib/data'
 import { debounceTime, switchMap, tap } from 'rxjs'
-import {
-	DadataCompaniesSuggestion
-} from '../../../../../../common-ui/src/lib/data/interfaces/dadata.interface'
+import { DadataCompaniesSuggestion } from '../../../../../../common-ui/src/lib/data/interfaces/dadata.interface'
 import { CompanyData } from './interface/company-data'
 
 @Component({
@@ -37,6 +39,8 @@ export class CompaniesInputComponent implements ControlValueAccessor {
 	dadataService = inject(DadataService)
 	innerSearchControl = new FormControl()
 	cdr = inject(ChangeDetectorRef)
+
+	// onChange: any
 
 	@Output() pickedCompany = new EventEmitter<CompanyData>()
 
@@ -60,10 +64,9 @@ export class CompaniesInputComponent implements ControlValueAccessor {
 	)
 
 	writeValue(companyData: any): void {
-		this.innerSearchControl.patchValue(companyData,
-			{
-				emitEvent: false
-			})
+		this.innerSearchControl.patchValue(companyData, {
+			emitEvent: false
+		})
 	}
 
 	registerOnChange(fn: any): void {
@@ -74,27 +77,23 @@ export class CompaniesInputComponent implements ControlValueAccessor {
 		this.onTouched = fn
 	}
 
-	setDisabledState?(isDisabled: boolean): void {
-
-	}
+	setDisabledState?(isDisabled: boolean): void {}
 
 	onChange(value: any) {
 	}
 
 	onTouched() {
 		setTimeout(() => {
-			this.isDropdownOpened.set(false)}, 200)
-		}
-
+			this.isDropdownOpened.set(false)
+		}, 200)
+	}
 
 	onSuggestionPick(suggest: DadataCompaniesSuggestion) {
 		this.isDropdownOpened.set(false)
 
-		this.innerSearchControl.patchValue(
-			suggest.data.name.short_with_opf, {
-				emitEvent: false
-			}
-		)
+		this.innerSearchControl.patchValue(suggest.data.name.short_with_opf, {
+			emitEvent: false
+		})
 
 		this.companyData.set({
 			companyName: suggest.data.name.short_with_opf,
@@ -103,10 +102,7 @@ export class CompaniesInputComponent implements ControlValueAccessor {
 		})
 
 		this.pickedCompany.emit(this.companyData())
-
 		this.onChange(this.innerSearchControl.value)
-
 		this.cdr.detectChanges()
 	}
-
 }

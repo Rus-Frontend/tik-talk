@@ -1,28 +1,28 @@
 import {
-	AfterViewInit, ChangeDetectionStrategy,
+	AfterViewInit,
+	ChangeDetectionStrategy,
 	Component,
-	ElementRef, HostListener,
-	inject, input,
+	ElementRef,
+	HostListener,
+	inject,
 	OnDestroy,
 	Renderer2,
 	signal
 } from '@angular/core'
 import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { MyMockService, Receiver } from './my-mock.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { DateTime } from 'luxon';
-import { debounceTime, fromEvent, Subscription } from 'rxjs';
-import { MaskitoOptions } from '@maskito/core';
-import { MaskitoDirective } from '@maskito/angular';
-import { mask } from '@tt/common-ui';
-import {
-	CompaniesInputComponent
-} from './companies-input/companies-input.component'
+	FormControl,
+	FormGroup,
+	ReactiveFormsModule,
+	Validators
+} from '@angular/forms'
+import { MyMockService, Receiver } from './my-mock.service'
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
+import { DateTime } from 'luxon'
+import { debounceTime, fromEvent, Subscription } from 'rxjs'
+import { MaskitoOptions } from '@maskito/core'
+import { MaskitoDirective } from '@maskito/angular'
+import { mask } from '@tt/common-ui'
+import { CompaniesInputComponent } from './companies-input/companies-input.component'
 import { CompanyData } from './companies-input/interface/company-data'
 
 @Component({
@@ -180,7 +180,6 @@ export class MyFormsExperimentComponent implements OnDestroy, AfterViewInit {
 	}
 
 	readonly maskitoOptions: MaskitoOptions = mask
-
 
 	onFillCompanyData(companyData: CompanyData) {
 		this.paymentForm.controls.receiverName.setValue(companyData.companyName)

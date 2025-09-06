@@ -24,12 +24,15 @@
     <div class="profile-card__action-btns">
 
       @if (isSubscribe()) {
-      <button class="subscribe-btn" (click)="onUnsubscribe()">
-        <svg
-        class="subscribe-btn-svg"
-        icon="subscribe"
-      ></svg>
-      </button>
+        <button
+          class="subscribe-btn"
+          (click)="onUnsubscribe()"
+        >
+          <svg
+            class="subscribe-btn-svg"
+            icon="subscribe"
+          ></svg>
+        </button>
 
         <button
           class="btn to-setting-btn"
@@ -39,7 +42,11 @@
         </button>
 
       } @else {
-        <button class="btn" (click)="onSubscribe()">Подписаться</button>
+        <button
+          class="btn"
+          (click)="onSubscribe()"
+        >Подписаться
+        </button>
       }
 
     </div>

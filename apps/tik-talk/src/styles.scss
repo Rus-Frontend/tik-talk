@@ -10,7 +10,6 @@
   --dark-hover-color: #161616;
   --light-transparent-color: rgba(255, 255, 255, 0.75);
   --message-color: #404040;
-
   --light-border: 1px solid var(--light-color);
 }
 
@@ -142,7 +141,7 @@ body {
 
 .tt-input {
   width: 100%;
-//  max-width: 440px;
+  //  max-width: 440px;
   margin-top: 8px;
   display: block;
   border: 1px solid var(--light-color);

@@ -18,11 +18,10 @@ export class ChatWsRxjsService implements ChatWsService {
 			})
 		}
 
-		return this.#socket.asObservable()
-			.pipe(
-				tap(message => params.handleMessage(message)),
-				finalize(() => console.log('Вот и закрывается'))
-			)
+		return this.#socket.asObservable().pipe(
+			tap((message) => params.handleMessage(message)),
+			finalize(() => console.log('Вот и закрывается'))
+		)
 	}
 
 	disconnect(): void {

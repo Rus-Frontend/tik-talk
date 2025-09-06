@@ -9,5 +9,4 @@ import { SidebarComponent } from '../sidebar/sidebar.component'
 	styleUrl: './layout.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LayoutComponent {
-}
+export class LayoutComponent {}

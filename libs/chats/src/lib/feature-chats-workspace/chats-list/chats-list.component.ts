@@ -1,14 +1,16 @@
 import {
-	AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef,
+	AfterViewInit,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	ElementRef,
 	inject,
 	OnDestroy,
 	Renderer2
 } from '@angular/core'
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { AsyncPipe } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { FormControl, ReactiveFormsModule } from '@angular/forms'
+import { AsyncPipe } from '@angular/common'
+import { RouterLink, RouterLinkActive } from '@angular/router'
 import {
 	debounceTime,
 	fromEvent,
@@ -17,8 +19,8 @@ import {
 	Subscription,
 	switchMap
 } from 'rxjs'
-import { ChatsBtnComponent } from '../chats-btn/chats-btn.component';
-import { ChatsService } from '@tt/data-access';
+import { ChatsBtnComponent } from '../chats-btn/chats-btn.component'
+import { ChatsService } from '@tt/data-access'
 
 @Component({
 	selector: 'app-chats-page-list',
@@ -59,8 +61,6 @@ export class ChatsListComponent implements AfterViewInit, OnDestroy {
 			this.cdr.detectChanges()
 		})
 	)
-
-
 
 	ngAfterViewInit() {
 		this.resizeFeed()

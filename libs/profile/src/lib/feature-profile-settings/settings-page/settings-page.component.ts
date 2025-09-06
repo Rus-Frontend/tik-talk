@@ -1,14 +1,17 @@
 import {
 	ChangeDetectionStrategy,
 	Component,
-	effect, ElementRef, HostListener,
-	inject, Renderer2,
+	effect,
+	ElementRef,
+	HostListener,
+	inject,
+	Renderer2,
 	ViewChild
 } from '@angular/core'
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
 import { debounceTime, firstValueFrom, fromEvent, Subscription } from 'rxjs'
-import { AvatarUploadComponent, ProfileHeaderComponent } from '../../ui';
-import { ProfileService } from '@tt/data-access';
+import { AvatarUploadComponent, ProfileHeaderComponent } from '../../ui'
+import { ProfileService } from '@tt/data-access'
 import { AddressInputComponent, StackInputComponent } from '@tt/common-ui'
 
 @Component({
@@ -39,7 +42,7 @@ export class SettingsPageComponent {
 		description: [''],
 		stack: [],
 		// stack: [{value: '', disabled: true}]
-		city: [null],
+		city: [null]
 	})
 
 	constructor() {
@@ -49,12 +52,9 @@ export class SettingsPageComponent {
 				...this.profileService.me()
 			})
 		})
-		console.log(this.profileService.me()?.city)
 	}
 
 	onSave() {
-		console.log(this.profileService.me()?.city)
-
 		this.form.markAsTouched()
 		this.form.updateValueAndValidity()
 
@@ -81,12 +81,10 @@ export class SettingsPageComponent {
 		event.preventDefault()
 	}
 
-
 	// Ресайз:
 	hostElement = inject(ElementRef)
 	r2 = inject(Renderer2)
 	resizing!: Subscription
-
 
 	ngAfterViewInit() {
 		this.resizeFeed()

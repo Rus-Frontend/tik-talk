@@ -1,5 +1,6 @@
 import {
-	AfterViewInit, ChangeDetectionStrategy,
+	AfterViewInit,
+	ChangeDetectionStrategy,
 	Component,
 	ElementRef,
 	inject,
@@ -7,13 +8,14 @@ import {
 	Renderer2
 } from '@angular/core'
 import { debounceTime, fromEvent, Subscription } from 'rxjs'
-import { ProfileCardComponent } from '../../ui';
-import { ProfileFiltersComponent } from '../profile-filters/profile-filters.component';
+import { ProfileCardComponent } from '../../ui'
+import { ProfileFiltersComponent } from '../profile-filters/profile-filters.component'
 import {
 	profileActions,
-	selectFilteredProfiles, selectMySubscription
+	selectFilteredProfiles,
+	selectMySubscription
 } from '@tt/data-access'
-import { Store } from '@ngrx/store';
+import { Store } from '@ngrx/store'
 import { InfiniteScrollTriggerComponent } from '@tt/common-ui'
 
 @Component({

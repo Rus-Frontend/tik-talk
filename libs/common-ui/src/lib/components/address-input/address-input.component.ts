@@ -1,15 +1,19 @@
 import {
-	ChangeDetectionStrategy, ChangeDetectorRef,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	forwardRef,
-	inject, signal
+	inject,
+	signal
 } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import {
 	ControlValueAccessor,
-	FormControl, FormGroup,
+	FormControl,
+	FormGroup,
 	NG_VALUE_ACCESSOR,
-	ReactiveFormsModule, Validators
+	ReactiveFormsModule,
+	Validators
 } from '@angular/forms'
 import { DadataService } from '../../data'
 import { debounceTime, switchMap, tap } from 'rxjs'
@@ -31,60 +35,6 @@ import { DadataAddressSuggestion } from '../../data/interfaces/dadata.interface'
 	]
 })
 export class AddressInputComponent implements ControlValueAccessor {
-	// innerSearchControl = new FormControl()
-	// #dadataService = inject(DadataService)
-	// cdr = inject(ChangeDetectorRef)
-	//
-	// isDropdownOpened = signal<boolean>(true)
-	//
-	// suggestions$ = this.innerSearchControl.valueChanges.
-	// pipe(
-	// 	debounceTime(500),
-	// 	switchMap(val => {
-	// 		return this.#dadataService.getSuggestion(val)
-	// 			.pipe(
-	// 				tap(res => {
-	// 					this.isDropdownOpened.set(!!res.length)
-	// 				})
-	// 			)
-	// 	}))
-	//
-	// writeValue(city: string | null): void {
-	// 	this.innerSearchControl.patchValue(city, {
-	// 		emitEvent: false
-	// 	})
-	// }
-	//
-	// setDisabledState?(isDisabled: boolean): void {}
-	//
-	// registerOnChange(fn: any): void {
-	// 	this.onChange = fn
-	// }
-	//
-	// registerOnTouched(fn: any): void {
-	// 	this.onTouched = fn
-	// }
-	//
-	// onChange(value: any) {}
-	//
-	// onTouched() {}
-	//
-	// onSuggestionPick(city: string) {
-	// 	this.innerSearchControl.patchValue(city, {
-	// 		emitEvent: false
-	// 	})
-	//
-	// 	this.isDropdownOpened.set(false)
-	//
-	// 	this.onChange(city)
-	//
-	// this.cdr.detectChanges()
-	// }
-
-
-
-
-
 	// Дополнение к форме с адресом
 	innerSearchControl = new FormControl()
 	#dadataService = inject(DadataService)
@@ -98,17 +48,16 @@ export class AddressInputComponent implements ControlValueAccessor {
 		building: new FormControl('', Validators.required)
 	})
 
-	suggestions$ = this.innerSearchControl.valueChanges.
-	pipe(
+	suggestions$ = this.innerSearchControl.valueChanges.pipe(
 		debounceTime(500),
-		switchMap(val => {
-			return this.#dadataService.getSuggestion(val)
-				.pipe(
-					tap(res => {
-						this.isDropdownOpened.set(!!res.length)
-					})
-				)
-		}))
+		switchMap((val) => {
+			return this.#dadataService.getSuggestion(val).pipe(
+				tap((res) => {
+					this.isDropdownOpened.set(!!res.length)
+				})
+			)
+		})
+	)
 
 	writeValue(city: string | null): void {
 		this.innerSearchControl.patchValue(city, {
@@ -133,29 +82,31 @@ export class AddressInputComponent implements ControlValueAccessor {
 	onTouched() {}
 
 	onSuggestionPick(suggest: DadataAddressSuggestion) {
-
 		this.isDropdownOpened.set(false)
 
 		this.innerSearchControl.patchValue(
 			`${suggest.data.city_type}.${suggest.data.city}, ` +
-			`${suggest.data.street_type}.${suggest.data.street}, ` +
-			`${suggest.data.house_type}.${suggest.data.house}`
-	, {
-			emitEvent: false
-		})
+				`${suggest.data.street_type}.${suggest.data.street}, ` +
+				`${suggest.data.house_type}.${suggest.data.house}`,
+			{
+				emitEvent: false
+			}
+		)
 		// this.onChange(suggest.data.city)
 
-		this.adressForm.patchValue({
-			city:`${suggest.data.city_type}.${suggest.data.city}` ,
-			street: `${suggest.data.street_type}.${suggest.data.street}` ,
-			building: `${suggest.data.house_type}.${suggest.data.house}`
-		}, {
-			emitEvent: false
-		})
+		this.adressForm.patchValue(
+			{
+				city: `${suggest.data.city_type}.${suggest.data.city}`,
+				street: `${suggest.data.street_type}.${suggest.data.street}`,
+				building: `${suggest.data.house_type}.${suggest.data.house}`
+			},
+			{
+				emitEvent: false
+			}
+		)
 
 		this.onChange(this.adressForm.value)
 		this.onChange(this.innerSearchControl.value)
 		this.cdr.detectChanges()
 	}
-
 }

@@ -1,8 +1,8 @@
-import { inject, Injectable, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { inject, Injectable, signal } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
 import { map, Observable, tap } from 'rxjs'
 import { Pageble, Profile } from '../../interfaces'
-import { GlobalStoreService } from '../profile/global-store.service';
+import { GlobalStoreService } from '../profile/global-store.service'
 
 @Injectable({
 	providedIn: 'root'

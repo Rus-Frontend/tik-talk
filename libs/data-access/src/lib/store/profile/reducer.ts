@@ -1,12 +1,12 @@
 import { Profile } from '@tt/data-access'
-import { createFeature, createReducer, on } from '@ngrx/store';
-import { profileActions } from './actions';
+import { createFeature, createReducer, on } from '@ngrx/store'
+import { profileActions } from './actions'
 
 export interface ProfileState {
-  profiles: Profile[],
-  profileFilters: Record<string, any>,
-	page: number,
-	size: number,
+	profiles: Profile[]
+	profileFilters: Record<string, any>
+	page: number
+	size: number
 
 	mySubscribtionsId: number[]
 }
@@ -21,15 +21,14 @@ export const initialState: ProfileState = {
 }
 
 export const profileFeature = createFeature({
-  name: 'profileFeature',
-  reducer: createReducer(
+	name: 'profileFeature',
+	reducer: createReducer(
+		initialState,
 
-    initialState,
-
-    on(profileActions.profilesLoaded, (state, payload) => ({
-      ...state,
-      profiles: state.profiles.concat(payload.profiles),
-    })),
+		on(profileActions.profilesLoaded, (state, payload) => ({
+			...state,
+			profiles: state.profiles.concat(payload.profiles)
+		})),
 
 		on(profileActions.setPage, (state, payload) => {
 			let page = payload.page
@@ -52,7 +51,6 @@ export const profileFeature = createFeature({
 		on(profileActions.saveMySubscriptionsId, (state, payload) => ({
 			...state,
 			mySubscribtionsId: payload.profilesId
-		})),
-
-  )
+		}))
+	)
 })

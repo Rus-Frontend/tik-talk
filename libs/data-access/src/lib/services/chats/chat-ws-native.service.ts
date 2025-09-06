@@ -3,17 +3,16 @@ import {
 	ChatWsService
 } from '../../interfaces/chats/chat-ws-service.interface'
 
-export class ChatWsNativeService implements ChatWsService{
-
+export class ChatWsNativeService implements ChatWsService {
 	#socket: WebSocket | null = null
 
-	connect (params: ChatConnectionWSParams) {
+	connect(params: ChatConnectionWSParams) {
 		if (this.#socket) return
 
 		this.#socket = new WebSocket(params.url, [params.token])
 
 		this.#socket.onmessage = (event: MessageEvent) => {
-		params.handleMessage(JSON.parse(event.data))
+			params.handleMessage(JSON.parse(event.data))
 		}
 
 		this.#socket.onclose = () => {

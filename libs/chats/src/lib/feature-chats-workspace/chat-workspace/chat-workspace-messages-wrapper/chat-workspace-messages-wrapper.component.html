@@ -5,7 +5,7 @@
   @for (groupMessages of messages(); track $index) {
 
     <div class="message-time-from mt20 mb16">
-        {{ groupMessages.date | timeFrom : 'Today' }}
+      {{ groupMessages.date | timeFrom : 'Today' }}
     </div>
 
     @for (message of groupMessages.messages; track message.id) {

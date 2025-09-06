@@ -1,7 +1,8 @@
 import {
 	patchState,
 	signalStore,
-	withComputed, withHooks,
+	withComputed,
+	withHooks,
 	withMethods,
 	withState
 } from '@ngrx/signals'
@@ -11,7 +12,7 @@ import { rxMethod } from '@ngrx/signals/rxjs-interop'
 import { pipe, switchMap, tap } from 'rxjs'
 
 export interface ProfileStateModel {
-	profiles: Profile[],
+	profiles: Profile[]
 	profileFilters: Record<string, any>
 }
 
@@ -22,19 +23,24 @@ const initialState: ProfileStateModel = {
 
 export const profileStore = signalStore(
 	withState(initialState),
-	withComputed(({profiles}) => { // - доп. действие для примера - замена фамилии профайлов на BLA BLA
+	withComputed(({ profiles }) => {
+		// - доп. действие для примера - замена фамилии профайлов на BLA BLA
 		return {
-			profiles2: computed(() => profiles().map(profile => ({...profile, lastName: 'BLA_BLA'})))
+			profiles2: computed(() =>
+				profiles().map((profile) => ({
+					...profile,
+					lastName: 'BLA_BLA'
+				}))
+			)
 		}
 	}),
 	withMethods((state, profileService = inject(ProfileService)) => {
 		const filterProfiles = rxMethod<Record<string, any>>(
 			pipe(
-				switchMap(filters => {
-					return profileService.filterProfiles(filters)
-						.pipe(
-							tap(res => patchState(state, {profiles: res.items}))
-						)
+				switchMap((filters) => {
+					return profileService
+						.filterProfiles(filters)
+						.pipe(tap((res) => patchState(state, { profiles: res.items })))
 				})
 			)
 		)
@@ -42,7 +48,8 @@ export const profileStore = signalStore(
 			filterProfiles
 		}
 	}),
-	withHooks({ // - доп. действия которые можно выполнить автоматом при каких-то событиях
+	withHooks({
+		// - доп. действия которые можно выполнить автоматом при каких-то событиях
 		onInit(store) {
 			store.filterProfiles({})
 		}

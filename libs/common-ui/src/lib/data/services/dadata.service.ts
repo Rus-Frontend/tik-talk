@@ -2,7 +2,8 @@ import { inject, Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { map } from 'rxjs'
 import {
-	DadataAddressSuggestion, DadataCompaniesSuggestion
+	DadataAddressSuggestion,
+	DadataCompaniesSuggestion
 } from '../interfaces/dadata.interface'
 import { DADATA_COMPANIES_TOKEN } from './dadata_companies_token'
 import { DADATA_ADDRESS_TOKEN } from './dadata_address_token'
@@ -11,66 +12,45 @@ import { DADATA_ADDRESS_TOKEN } from './dadata_address_token'
 	providedIn: 'root'
 })
 export class DadataService {
-
-	// #apiUrl =
-	// 	'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address'
-	// #http = inject(HttpClient)
-	//
-	// getSuggestion(query: string) {
-	// 	return this.#http
-	// 		.post<{suggestions: DadataSuggestion[]}>(this.#apiUrl, { query }, { headers:
-	// 					{
-	// 					Authorization: `Token ${DADATA_TOKEN}`
-	// 				}
-	// 			}
-	// 		)
-	// 		.pipe(
-	// 			map(res => {
-	// 				return Array.from(
-	// 					new Set(
-	// 						res.suggestions.map(
-	// 							(suggestion: DadataSuggestion) => {
-	// 								return suggestion.data.city
-	// 						})
-	// 					)
-	// 				)
-	// 			})
-	// 		)
-	// }
-
-
-
 	// Альтернатива/Дополнение к форме с адресом
-	#apiUrl =
-		'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/'
+	#apiUrl = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/'
 	#http = inject(HttpClient)
 
 	getSuggestion(query: string) {
 		return this.#http
-			.post<{suggestions: DadataAddressSuggestion[]}>(`${this.#apiUrl}address`, { query }, { headers:
-						{
-							Authorization: `Token ${DADATA_ADDRESS_TOKEN}`
-						}
+			.post<{
+				suggestions: DadataAddressSuggestion[]
+			}>(
+				`${this.#apiUrl}address`,
+				{ query },
+				{
+					headers: {
+						Authorization: `Token ${DADATA_ADDRESS_TOKEN}`
+					}
 				}
 			)
 			.pipe(
-				map(res => {
+				map((res) => {
 					return res.suggestions
 				})
 			)
 	}
 
-
 	getCompaniesSuggestion(query: string) {
 		return this.#http
-			.post<{suggestions: DadataCompaniesSuggestion[]}>(`${this.#apiUrl}party`, { query }, { headers:
-						{
-							Authorization: `Token ${DADATA_COMPANIES_TOKEN}`
-						}
+			.post<{
+				suggestions: DadataCompaniesSuggestion[]
+			}>(
+				`${this.#apiUrl}party`,
+				{ query },
+				{
+					headers: {
+						Authorization: `Token ${DADATA_COMPANIES_TOKEN}`
+					}
 				}
 			)
 			.pipe(
-				map(res => {
+				map((res) => {
 					return res.suggestions
 				})
 			)

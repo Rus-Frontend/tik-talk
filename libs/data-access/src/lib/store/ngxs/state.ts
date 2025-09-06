@@ -1,11 +1,11 @@
-import { Pageble, Profile, ProfileService } from '@tt/data-access'
+import { Profile, ProfileService } from '@tt/data-access'
 import { inject, Injectable } from '@angular/core'
 import { Action, Selector, State, StateContext } from '@ngxs/store'
 import { FilterEvents } from './actions'
-import { Observable, tap } from 'rxjs'
+import { tap } from 'rxjs'
 
 export interface ProfileStateModel {
-	profiles: Profile[],
+	profiles: Profile[]
 	profileFilters: Record<string, any>
 }
 
@@ -26,13 +26,16 @@ export class ProfileState {
 	}
 
 	@Action(FilterEvents)
-	onFilterEvets(ctx: StateContext<ProfileStateModel>, {filters}: FilterEvents) {
+	onFilterEvets(
+		ctx: StateContext<ProfileStateModel>,
+		{ filters }: FilterEvents
+	) {
 		return this.#profileService.filterProfiles(filters).pipe(
-			tap(res => {
+			tap((res) => {
 				ctx.patchState({
 					profiles: res.items
 				})
 			})
 		)
-		}
 	}
+}

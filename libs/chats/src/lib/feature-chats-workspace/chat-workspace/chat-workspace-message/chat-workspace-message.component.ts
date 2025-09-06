@@ -4,21 +4,21 @@ import {
 	HostBinding,
 	input
 } from '@angular/core'
-import { AvatarCircleComponent, LocalTimePipe } from '@tt/common-ui';
-import { Message} from '@tt/data-access'
+import { AvatarCircleComponent, LocalTimePipe } from '@tt/common-ui'
+import { Message } from '@tt/data-access'
 
 @Component({
-  selector: 'app-chat-workspace-message',
-  imports: [AvatarCircleComponent, LocalTimePipe],
-  templateUrl: './chat-workspace-message.component.html',
-  styleUrl: './chat-workspace-message.component.scss',
+	selector: 'app-chat-workspace-message',
+	imports: [AvatarCircleComponent, LocalTimePipe],
+	templateUrl: './chat-workspace-message.component.html',
+	styleUrl: './chat-workspace-message.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatWorkspaceMessageComponent {
-  message = input.required<Message>();
+	message = input.required<Message>()
 
-  @HostBinding('class.is-mine')
-  get isMine() {
-    return this.message().isMine;
-  }
+	@HostBinding('class.is-mine')
+	get isMine() {
+		return this.message().isMine
+	}
 }

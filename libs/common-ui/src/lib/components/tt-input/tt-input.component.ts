@@ -1,8 +1,13 @@
 import {
-	ChangeDetectionStrategy, ChangeDetectorRef,
-	Component, EventEmitter,
-	forwardRef, inject,
-	input, Output, signal
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	Component,
+	EventEmitter,
+	forwardRef,
+	inject,
+	input,
+	Output,
+	signal
 } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import {
@@ -69,5 +74,4 @@ export class TtInputComponent implements ControlValueAccessor {
 		this.onTouchedFn()
 		this.isTouched.emit()
 	}
-
 }

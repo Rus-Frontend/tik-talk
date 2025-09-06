@@ -58,9 +58,6 @@ export class ChatWorkspaceMessagesWrapperComponent
 			this.scrollToBottom()
 		}, 200)
 
-		// this.cdr.markForCheck()
-		// this.cdr.detectChanges()
-
 		// - старый вариант решения отправки сообщений
 		// await firstValueFrom(
 		//   this.chatService.sendMessage(this.chat().id, messageText)

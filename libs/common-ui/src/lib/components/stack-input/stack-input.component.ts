@@ -1,7 +1,9 @@
 import {
 	ChangeDetectionStrategy,
 	Component,
-	forwardRef, HostBinding, HostListener
+	forwardRef,
+	HostBinding,
+	HostListener
 } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { SvgIconComponent } from '../svg-icon/svg-icon.component'
@@ -27,7 +29,6 @@ import { BehaviorSubject } from 'rxjs'
 	]
 })
 export class StackInputComponent implements ControlValueAccessor {
-
 	value$ = new BehaviorSubject<string[]>([])
 
 	#disabled = false
@@ -56,7 +57,6 @@ export class StackInputComponent implements ControlValueAccessor {
 
 	registerOnTouched(fn: any): void {
 		this.onTouched = fn
-
 	}
 
 	setDisabledState(isDisabled: boolean): void {
@@ -72,14 +72,9 @@ export class StackInputComponent implements ControlValueAccessor {
 		this.value$.next(stack)
 	}
 
+	onChange(value: string[] | null) {}
 
-	onChange(value: string[] | null) {
-
-	}
-
-	onTouched() {
-
-	}
+	onTouched() {}
 
 	onTagDelete(i: number) {
 		const tags = this.value$.value
@@ -87,5 +82,4 @@ export class StackInputComponent implements ControlValueAccessor {
 		this.value$.next(tags)
 		this.onChange(this.value$.value)
 	}
-
 }

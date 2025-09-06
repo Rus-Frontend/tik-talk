@@ -4,13 +4,14 @@ import {
 	EventEmitter,
 	inject,
 	input,
-	Input, OnChanges, OnInit,
-	Output, signal
+	Input,
+	OnChanges,
+	OnInit,
+	Output,
+	signal
 } from '@angular/core'
 import { ImgUrlPipe, SvgIconComponent } from '@tt/common-ui'
-import {
-	Profile
-} from '@tt/data-access'
+import { Profile } from '@tt/data-access'
 import { Store } from '@ngrx/store'
 import { Router } from '@angular/router'
 
@@ -25,7 +26,7 @@ import { Router } from '@angular/router'
 export class ProfileCardComponent implements OnInit, OnChanges {
 	@Input() profile!: Profile
 	mySubscriptions = input<number[]>([])
-	router = inject(Router);
+	router = inject(Router)
 
 	isSubscribe = signal(false)
 
@@ -36,7 +37,7 @@ export class ProfileCardComponent implements OnInit, OnChanges {
 
 	ngOnInit() {
 		this.isSubscribe.set(this.mySubscriptions().includes(this.profile.id))
-		}
+	}
 
 	onSubscribe() {
 		this.eventOnSubscribe.emit(this.profile.id)
@@ -47,11 +48,10 @@ export class ProfileCardComponent implements OnInit, OnChanges {
 	}
 
 	async sendMessage(userId: number) {
-		this.router.navigate(['/chats', 'new'], { queryParams: { userId } });
+		this.router.navigate(['/chats', 'new'], { queryParams: { userId } })
 	}
 
 	ngOnChanges() {
 		this.isSubscribe.set(this.mySubscriptions().includes(this.profile.id))
 	}
-
 }

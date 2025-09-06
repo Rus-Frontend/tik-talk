@@ -3,19 +3,19 @@ export interface ChatWSMessageBase {
 }
 
 export interface ChatWSUnreadMessage extends ChatWSMessageBase {
-	action: 'unread',
+	action: 'unread'
 	data: {
 		count: number
 	}
 }
 
 export interface ChatWSNewMessage extends ChatWSMessageBase {
-	action: 'message',
+	action: 'message'
 	data: {
-		id: number,
-		message: string,
-		chat_id: number,
-		created_at: string,
+		id: number
+		message: string
+		chat_id: number
+		created_at: string
 		author: number
 	}
 }
@@ -25,8 +25,12 @@ export interface ChatWSError extends ChatWSMessageBase {
 }
 
 export interface ChatWSSenMessage {
-	text: string,
+	text: string
 	chat_id: number
 }
 
-export type ChatWSMessage = ChatWSUnreadMessage | ChatWSNewMessage | ChatWSError | ChatWSSenMessage
+export type ChatWSMessage =
+	| ChatWSUnreadMessage
+	| ChatWSNewMessage
+	| ChatWSError
+	| ChatWSSenMessage

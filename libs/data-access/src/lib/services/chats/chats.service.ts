@@ -17,7 +17,7 @@ import {
 	isNewMessage,
 	isUnreadMessage
 } from '../../interfaces/chats/type-guards'
-import { ChatWsRxjsService } from '../../interfaces/chats/chat-ws-rxjs.service'
+import { ChatWsRxjsService } from './chat-ws-rxjs.service'
 
 @Injectable({
 	providedIn: 'root'
